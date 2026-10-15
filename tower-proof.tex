@@ -1,0 +1,103 @@
+For $0\le s<Q$ put
+
+\begin{equation}
+ B_s(x)=\binom{Qx-s-1}{hQ}.
+\end{equation}
+Pair the nonmultiples of $Q$ in the numerator window with the corresponding
+nonmultiples in $\{1,\ldots,hQ\}$. Each quotient is a $p$-adic unit whose
+reduction does not depend on $x$. So the product formula first shows $B_s(x)\in\mathbb Z_{(p)}[x]$.
+Partition the $hQ$ numerator factors
+according to their residue modulo $Q$. Every residue occurs $h$ times.
+More explicitly, pair a numerator factor $Qx-c$ with a denominator factor
+$c'$ having the same residue modulo $Q$. Then $c\equiv c'\pmod p$ and
+$(Qx-c)/c'\equiv-1\pmod p$. The $h$ factors with $Q\mid c$ give the
+remaining product $\binom{x-1}{h}$ after the powers of $Q$ are canceled.
+After removing the fixed powers of $p$ contributed by $(hQ)!$, all residue
+classes except the one with $t\equiv-s-1\pmod Q$ contribute $p$-adic units
+independent of $x$ modulo $p$. The exceptional class contributes exactly
+$h$ linear factors in $x$. Thus the reduced polynomial has degree at most
+$h$. Lucas' formula gives its values at $x=1,\ldots,h$. At $x=0$ the
+negative-index identity gives the same value $(-1)^h$, because
+$\binom{-1}{h}=(-1)^h$; on the left $Q=p^k$ is odd since $p>2n$.
+The remaining sign is $(-1)^{h(Q-1)}=1$. The $h+1$ values therefore prove the coefficientwise congruence
+is the unsigned identity
+\begin{equation}
+ \binom{Qx-s-1}{hQ}\equiv\binom{x-1}{h}\pmod p.       \label{eq:20}
+\end{equation}
+
+Write $i=Qi_0+s_i$ and $j=Qj_0+s_j$, with residues in
+$\{0,\ldots,Q-1\}$. Let $P^0_{i_0j_0}$, $E^0=(E^0_{i_0j_0})$ and
+$C^0=(C^0_{i_0j_0})$ be the polynomial parts $P_{ij}$ and the matrices
+$E(a)$ and $C(a)$ of Section~\ref{sec:determinant} with $(m,g)=(n,h)$.
+For a nonzero offset $d$ we use the Taylor series
+\[
+ U_d(x)=\frac{Q}{Qx+d}=\frac{Q/d}{1+(Q/d)x}.
+\]
+Since $|d|<2nQ<pQ$, its coefficients are $p$-integral. Put
+$d_i=w(-i)/(j-i)$ and $d_j=-w(-j)/(j-i)$. The scaled polynomial part
+satisfies the exact identity
+\begin{equation}
+ Q^2P_{ij}(Qx-s)=B_s(x)^3U_{i-s}(x)U_{j-s}(x)
+ -(Qd_i)U_{i-s}(x)-(Qd_j)U_{j-s}(x).                  \label{eq:20a}
+\end{equation}
+Suppose one offset is zero. The two residue values then agree. So the
+numerator in the corresponding $1/x$ term has zero constant coefficient.
+Division by $x$ therefore remains integral. Now reduce \eqref{eq:20a}. A nonzero
+offset contributes only when it is a multiple of $Q$. Both offsets
+contribute precisely when $s_i=s_j=s$. In that case \eqref{eq:20} gives the seed
+polynomial part $P^0_{i_0j_0}$. This includes the finite-part division at a
+zero offset. After two derivatives we obtain, coefficientwise,
+\begin{equation}
+ Q^4P_{ij}''(Qx-s)\equiv
+ {\bf1}_{s_i=s_j=s}(P^0_{i_0j_0})''(x)\pmod p.             \label{eq:21}
+\end{equation}
+
+The scaled values in \eqref{eq:21} have integral Newton coefficients. So Newton
+interpolation and
+\[
+ \sum_{r\ge1}z^r\binom{r-1}{t}=
+ \frac{z^{t+1}}{(1-z)^{t+1}}
+\]
+sum \eqref{eq:21} coefficientwise. Split $r=Qx-s$. A matching residue then
+contributes the factor $a^s$ and the denominator $1-a^{-Q}$. This
+denominator is a $p$-unit because $p\nmid a(a-1)$, so
+$a^Q\equiv a\not\equiv1\pmod p$. The
+zero-offset finite part is included before this splitting. Because $h<p$,
+the $p$-parts of the factors in $(hQ)!$ cancel coefficientwise against the
+corresponding numerator blocks. For the harmonic term,
+\[
+ Q^3H_{Qu+s}(a)\equiv a^sH_u(a)\pmod p,
+\]
+because only the multiples $t=Qv$ survive and $a^Q=a$. We combine the
+polynomial part, the harmonic term, and the $T$ coefficient. This gives the
+all-$k$ congruences
+\begin{equation}
+ Q^4E_{ij}\equiv {\bf1}_{s_i=s_j}a^sE^0_{i_0j_0},\qquad
+ QC_{ij}\equiv {\bf1}_{s_i=s_j}a^sC^0_{i_0j_0}\pmod p.       \label{eq:22}
+\end{equation}
+
+Define
+\[
+ {\mathcal P}_k(X)=Q^{4m}G_{m,a}(X/Q^3).
+\]
+Group rows and columns by their residues modulo $Q$. The block permutation
+signs cancel. The $Q$ diagonal blocks are
+$a^s(E^0+XC^0)$. Their scalar is
+$a^{nQ(Q-1)/2}=1$ in $\mathbb F_p$, since $n$ is even and
+$a^{Q-1}=1$. Thus, for every $k$,
+\begin{equation}
+ {\mathcal P}_k(X)\in\mathbb Z_{(p)}[X],\qquad
+ {\mathcal P}_k(X)\equiv G_{n,a}(X)^Q\pmod p.                  \label{eq:23}
+\end{equation}
+Let $\xi$ be fixed and rational. Choose $k$ with
+$3k+v_p(\xi)\ge1$ (with $v_p(0)=+\infty$). Evaluate at
+$X=Q^3\xi$. For all sufficiently large $k$ this gives the unscaled identity
+\[
+ Q^{4m}G_{m,a}(\xi)={\mathcal P}_k(Q^3\xi)
+ \equiv G_{n,a}(Q^3\xi)^Q
+ \equiv G_{n,a}(0)^Q\not\equiv0\pmod p.
+\]
+The seed choice in \eqref{eq:19} makes $G_{n,a}(0)$ a $p$-unit. Since the
+left side would be zero if $G_{m,a}(\xi)=0$, this unit congruence gives the
+required contradiction. The argument uses the displayed congruence before
+any cancellation of the factor $Q^{4m}$.

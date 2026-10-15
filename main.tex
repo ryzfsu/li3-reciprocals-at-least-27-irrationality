@@ -1,0 +1,246 @@
+\documentclass{amsart}
+\usepackage{amssymb,mathtools,array,longtable,booktabs}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{3em}
+\raggedbottom
+\hypersetup{pdftitle={Irrationality of the trilogarithm at reciprocals of integers of absolute value at least 27},pdfauthor={Ruiyi Zhang}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem{fact}{Fact}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+
+\newcommand{\Li}{\operatorname{Li}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Res}{\operatorname*{Res}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\needlines}[1]{\par\dimen0=\pagegoal\advance\dimen0-\pagetotal
+  \ifdim\dimen0<#1\baselineskip\newpage\fi}
+\begin{document}
+
+\title[Irrationality of $\operatorname{Li}_3(1/a)$ for $|a|\ge27$]{Irrationality of the trilogarithm at reciprocals of integers of absolute value at least 27}
+\author{Ruiyi Zhang}
+\address{Independent Researcher, Columbia, Maryland, USA}
+\email{ryzfsu@gmail.com}
+\subjclass[2020]{Primary 11J72; Secondary 33B30}
+\keywords{trilogarithm, irrationality, determinant, logarithmic energy}
+
+\begin{abstract}
+We prove that $\operatorname{Li}_3(1/a)$ is irrational for every integer
+$a\ge27$ and every integer $a\le-27$. One determinant construction is used
+on both sides. The positive side takes $m=12Q$ and $g=4Q$; the negative side
+takes $m=16Q$ and $g=5Q$. We prove a conservative coefficientwise
+integerizer, nonvanishing along prime-power towers, and a
+logarithmic-energy estimate. On the negative side the estimate rests on a
+signed residue identity along a bent contour. Exact rational and directed
+interval certificates give four strict endpoint margins. Slope comparisons
+carry them along both rays.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+For $|z|<1$, define
+\[
+\operatorname{Li}_3(z)=\sum_{n\ge1}\frac{z^n}{n^3}.
+\]
+
+By Marcovecchio \cite[p.~229]{Marcovecchio}, Hata's method
+\cite[Corollary~2.2]{Hata} gives the linear independence of
+\[
+1,\ \operatorname{Li}_1(1/a),\ \operatorname{Li}_2(1/a),\
+\operatorname{Li}_3(1/a)
+\]
+for $|a|\ge1038$. Panzone gave a short proof that
+$\operatorname{Li}_3(1/d)$ is irrational for every integer $d\ge1173$
+\cite[Theorem~2, p.~108]{Panzone}. Marcovecchio proved the four-number
+independence for $a\ge486$ and $a\le-471$ \cite[Theorem~7.1,
+pp.~228--229]{Marcovecchio}. In these ranges $\operatorname{Li}_3(1/a)$ is
+therefore irrational.
+
+This paper continues the construction in \cite{Zh,ZhB}. Similar determinant constructions appear
+in \cite{Fauzan,Lai}. For the dilogarithm at rational points see also
+\cite{Prellberg,Liu,TanZhang}.
+
+Our earlier preprint \cite{ZhB} treated $a\ge67$ and $a\le-70$. It used
+$g=m/2$ and $m=4Q$. We cite its routine lemmas where they carry over, and we
+list the changes each time. The new arithmetic rates, the seed towers, the
+endpoint certificates and the signed negative contour are proved here. We
+prove the following statement.
+
+\begin{theorem}\label{thm:main}
+For every integer $a\ge27$ and every integer $a\le-27$,
+$\operatorname{Li}_3(1/a)$ is irrational.
+\end{theorem}
+
+The proof has three parts. Sections~\ref{sec:determinant}--\ref{sec:arithmetic}
+give the determinant and its integerization. Section~\ref{sec:nonvanishing}
+proves nonvanishing. Sections~\ref{sec:positive} and \ref{sec:negative}
+give the analytic estimates for the two signs.
+Sections~\ref{sec:endpoints}--\ref{sec:proof} assemble the four endpoint
+certificates and the rays.
+
+In Remark~\ref{rem:scope}, let $G_{m,a}$ be the determinant polynomial of
+Section~\ref{sec:determinant}. For $G_{m,a}\not\equiv0$, let $\Delta_m$ be
+the least positive rational number with $\Delta_mG_{m,a}\in\mathbb Z[T]$,
+and put $\tau_m=m^{-2}\log\Delta_m$. When
+$G_{m,a}(\operatorname{Li}_3(1/a))\ne0$, put
+$\alpha_m=-m^{-2}\log|G_{m,a}(\operatorname{Li}_3(1/a))|$ and
+$B_m=\tau_m-\alpha_m$. The criterion applies when these nonzero evaluations
+contain a subsequence $m_k$ on which $B_{m_k}$ stays below a negative
+constant. It also needs, for every fixed rational $\xi$,
+$G_{m_k,a}(\xi)\ne0$ for all sufficiently large $k$. Finite values of
+$B_m$ are only indicative. The ratio is $\rho=g/m$. The
+staggered filter replaces $\binom{r-1}{g}^3$ by a product of three binomial
+coefficients with different lower indices. This variant construction is not
+used in this paper.
+
+\begin{remark}[Scope of the present construction]\label{rem:scope}
+We do not attempt to optimize the threshold in this paper. We expect that
+the threshold could be lowered, but we make no lower-threshold claim here.
+
+Several choices were made for safety and are not optimal. The
+integerization constants are conservative. The filter ratio $\rho$, the
+index windows and the negative-side contour tilt were not optimized jointly.
+Our expectation is that tuning them could lower the threshold by a few more
+units. The tuning would keep the same single-block determinant and the same
+three proof steps:
+integerization, nonvanishing and analytic decay.
+
+The data suggest, however, that this algorithm is unlikely to reach
+thresholds below 20. We computed exact denominators and determinants of the
+same construction for $m\le128$. We used $g=5m/16$ and $g=\lceil m/3\rceil$.
+We recorded the difference
+$B_m=\tau_m-\alpha_m$ between the arithmetic growth and the analytic decay
+per $m^2$:
+\begin{itemize}
+\item $a=+20$. $B_m$ crosses zero. For $g=\lceil m/3\rceil$ and $g=5m/16$
+it equals $-0.0728$ and $-0.0494$ at $m=64$, and $+0.007$ and $+0.017$ at
+$m=112$.
+\item $a=+21,+22$. $B_m$ is still negative at $m=112$: about $-0.05$ to
+$-0.06$ for $a=21$, and about $-0.10$ to $-0.11$ for $a=22$.
+\item $a=-20$. For $g=5m/16$, $B_m$ stays negative but rises fast: about
+$-0.21$ at $m=64$, $-0.12$ at $m=112$ and $-0.08$ at $m=128$.
+\item Staggered filter $\binom{r-1}{m/8}\binom{r-1}{3m/16}\binom{r-1}{m/4}$.
+It gives $B_m>0$ at $a=\pm20$ for $m=64,80,96,112$.
+\end{itemize}
+These finite computations put the apparent crossover of the method near
+$|a|=21$--$23$ on the positive side. On the negative side it lies close to
+20. We therefore expect that going below $|a|=20$ requires a structurally
+different auxiliary construction. Further parameter tuning should not
+suffice. All statements in this remark are numerical observations at finite
+$m$. They are not part of the proof.
+\end{remark}
+
+\input{body.tex}
+\input{appendices.tex}
+
+\section{Computer checks}\label{app:checks}
+
+Table~\ref{tab:checks-clean} lists the checks. Each script reads data
+printed in this paper or in the ancillary tables. The scripts use the Python
+standard library except where stated. The seed check
+\texttt{check\_seed.py} requires \texttt{python-flint}; the energy and
+contour interval checks require \texttt{mpmath}.
+The script \texttt{check\_tau.py} does not certify every printed digit
+independently. The finite check \texttt{check\_contour.py} diagnoses the
+residue mechanism for an undifferentiated $F$. It also performs a separate
+triple-zero check. It is not an $F''$ certificate and does not replace the
+uniform contour proof.
+
+\begin{table}[!ht]
+\caption{Exact and directed-interval computations.}\label{tab:checks-clean}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}>{\footnotesize\ttfamily}l>{\raggedright\arraybackslash}p{0.57\textwidth}@{}}
+\normalfont\small Script & Statement checked; result\\ \hline
+check\_energy.py & \textbf{Directed interval replay:} recomputes the positive and negative certificate bounds from the printed density tables and interval data, including masses, caps, pair kernels, boxes, and tails. PASS.\\
+check\_seed.py & \textbf{Exact algebra:} rebuilds both seed determinants, verifies the degree-bounded identities at 307 and 553 integer points, then checks the JSON denominator factorizations and displayed residue vectors. PASS.\\
+check\_profile.py & \textbf{Exact algebra:} recomputes the two conservative baseline upper bounds, all ten low-layer increments for each ratio, and the resulting profile inequalities. PASS.\\
+check\_tau.py & \textbf{Exact rational arithmetic:} checks the four endpoint margins, the two stated lower margin thresholds at $q=27$, and the identities $1/2-27/200=73/200$ and $5/16-97/1024=223/1024$ using rational logarithm enclosures; it does not certify the displayed energy decimals. PASS.\\
+check\_contour.py & \textbf{Finite diagnostic:} residue-mechanism checks for an undifferentiated $F$, a separate triple-zero check, sine-bound and signed-contour consistency checks; it is not an $F''$ certificate and does not replace the uniform contour proof. PASS.\\
+\end{tabular}
+\end{table}
+
+\section*{Statements and declarations}
+
+\textbf{Competing interests.} The author has no competing interests.
+
+\textbf{Funding.} No funding was received for this work.
+
+\textbf{Data availability.} The scripts of Appendix~\ref{app:checks}, the
+complete seed arrays, the interval boxes, and their compact outputs accompany
+the paper as ancillary files. These files are part of the proof record.
+
+\begin{thebibliography}{18}
+
+\bibitem{Andreief}
+C.~Andr\'eief, \emph{Note sur une relation entre les int\'egrales d\'efinies
+des produits des fonctions}, M\'em. Soc. Sci. Phys. Nat. Bordeaux (3)
+\textbf{2} (1886), 1--14.
+
+\bibitem{Davenport}
+H.~Davenport, \emph{Multiplicative Number Theory}, 3rd ed., revised by
+H.~L.~Montgomery, Graduate Texts in Mathematics, vol.~74, Springer, 2000.
+
+\bibitem{Fauzan}
+A.~Fauzan, \emph{$\zeta(5)$ is irrational}, Zenodo (2026),
+\url{https://doi.org/10.5281/zenodo.22826419}.
+
+\bibitem{Hata}
+M.~Hata, \emph{On the linear independence of the values of polylogarithmic
+functions}, J. Math. Pures Appl. (9) \textbf{69} (1990), 133--173.
+
+\bibitem{Krattenthaler}
+C.~Krattenthaler, \emph{Advanced determinant calculus}, S\'em. Lothar.
+Combin. \textbf{42} (1999), Art.~B42q, 67~pp.
+
+\bibitem{Lai}
+L.~Lai, \emph{The linear independence of $1,\zeta(3),\zeta(4)$},
+arXiv:2610.06838 (2026).
+
+\bibitem{Liu}
+S.-Q.~Liu, \emph{Li2Rational}, GitHub repository (2026), commit
+\texttt{b2a61c4}, \url{https://github.com/siqiliu-tsinghua/Li2Rational}.
+
+\bibitem{Marcovecchio}
+R.~Marcovecchio, \emph{Linear independence of polylogarithms at algebraic
+points}, Mosc. J. Comb. Number Theory \textbf{6} (2016), no.~2--3, 208--232.
+
+\bibitem{Panzone}
+P.~A.~Panzone, \emph{A simple proof of the irrationality of the trilog},
+Rev. Un. Mat. Argentina \textbf{42} (2001), no.~2, 103--111.
+
+\bibitem{Prellberg}
+T.~Prellberg, \emph{Three irrationality results for the dilogarithm},\\
+arXiv:\allowbreak 2609.06895 (2026).
+
+\bibitem{SaffTotik}
+ E.~B.~Saff and V.~Totik, \emph{Logarithmic Potentials with External
+ Fields},
+Grundlehren der mathematischen Wissenschaften, vol.~316, Springer, 1997.
+
+\bibitem{TanZhang}
+H.~Tan and Y.~Zhang, \emph{Uniform cubic bounds for irrational values of the
+dilogarithm}, Zenodo (2026),
+\url{https://doi.org/10.5281/zenodo.23247332}.
+
+\bibitem{Zh}
+R.~Zhang, \emph{Irrationality of the dilogarithm at reciprocals of
+integers}, preprint (2026), Zenodo,
+\url{https://doi.org/10.5281/zenodo.23296412}.
+
+\bibitem{ZhB}
+R.~Zhang, \emph{Irrationality of the trilogarithm at reciprocals of large
+integers}, preprint (2026), Zenodo,
+\url{https://doi.org/10.5281/zenodo.23329357}.
+
+\end{thebibliography}
+
+\end{document}
+

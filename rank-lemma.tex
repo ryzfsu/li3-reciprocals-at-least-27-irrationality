@@ -1,0 +1,416 @@
+% Insert for the low-prime rank lemma.
+% This file is intentionally separate from every frozen paper directory.
+
+\subsection{The low-prime rank lemma}
+\label{sec:insert-low-prime-rank}
+
+This subsection gives the coefficientwise local argument for the low-prime
+branch. It applies to the pencil $E+TC$, including finite parts at poles and
+the coefficient of $T$.
+Throughout this subsection
+\[
+ I=\{0,\ldots,m-1\},\qquad J=\{m,\ldots,2m-1\},\qquad U=2m-1,
+\]
+\[
+ w(X)=\frac{\mathcal N(X)}d,\qquad
+ \mathcal N(X)=\prod_{u=1}^{g}(X-u)^3,\qquad d=(g!)^3.
+\]
+Thus $w(r)=\binom{r-1}{g}^{3}$ at every non-negative integer $r$.
+
+\begin{lemma}[Low-prime rank]
+\label{lem:residue-copy-rank-insert}
+Let $p\geq5$ satisfy
+\[
+ p^2>U+g,
+ \qquad p\nmid a(a-1),
+ \qquad q=\left\lfloor\frac gp\right\rfloor\geq1,
+\]
+where $a$ is an integer with $|a|>1$.  Write
+\[
+ g=qp+h,\qquad 0\leq h<p,\qquad G=p-h.
+\]
+Call a node $n$ good if $n\bmod p<G$ and bad if
+$n\bmod p\geq G$.  Put
+\[
+ \kappa_n=\begin{cases}0,&n\text{ good},\\1,&n\text{ bad},\end{cases}
+ \qquad
+ \omega_i=2-\kappa_i,\qquad \omega'_j=2-\kappa_j.
+\]
+For $n\geq0$ define
+\[
+ R_n(X)=\frac{\mathcal N(X)-\mathcal N(-n)}{X+n},
+ \qquad
+ H_n(a)=\sum_{s=1}^{n}\frac{a^{n-s}}{s^3},
+\]
+and
+\begin{equation}
+ b_n(T)=\sum_{r\geq1}a^{-r}\left(\frac{R_n}{d}\right)''(r)
+       +2w(-n)\bigl(a^nT-H_n(a)\bigr).
+ \label{eq:insert-bn}
+\end{equation}
+Let the normalized pencil entries be
+\begin{equation}
+ B_{ij}(T)=\frac{b_i(T)-b_j(T)}{j-i},
+ \qquad i\in I,\ j\in J.
+ \label{eq:insert-Bij}
+\end{equation}
+By the second divided-difference identity and the finite harmonic terms,
+these normalized entries are exactly the entries of the determinant pencil:
+\[
+ B_{ij}(T)=E_{ij}(a)+TC_{ij}(a).
+\]
+Then the exact row and column scaling is
+\begin{equation}
+ \widehat B_{ij}(T)=p^{\omega_i+\omega'_j}B_{ij}(T)
+ =p^{(2-\kappa_i)+(2-\kappa_j)}B_{ij}(T).
+ \label{eq:insert-scaled-B}
+\end{equation}
+The matrix $\widehat B$ has entries in $\mathbb Z_{(p)}[T]$, and, if
+$N_I$ and $N_J$ denote the numbers of good nodes in $I$ and $J$, respectively,
+\begin{equation}
+ \operatorname{rank}_{\mathbb F_p(T)}\overline{\widehat B}
+ \leq \min(N_I,N_J)+\min(G,h).
+ \label{eq:insert-rank-bound}
+\end{equation}
+Here the bar denotes reduction in the Gauss valuation ring of
+$\mathbb Q_p(T)$.  Consequently, with
+\[
+ W_{\rm nat}=\sum_{i\in I}\omega_i+\sum_{j\in J}\omega'_j
+             =2m+N_I+N_J,
+\]
+and put
+\[
+ \varrho_*:=\min(N_I,N_J)+\min(G,h).
+\]
+every coefficient of the determinant satisfies
+\begin{equation}
+ v_p\!\left([T^k]\det B(T)\right)
+ \geq -W_{\rm nat}+m-\varrho_*
+ \qquad(0\leq k\leq m).
+ \label{eq:insert-rank-valuation}
+\end{equation}
+
+There is also a separate entrywise alternative.  Its row and column base
+weights are $1$ and $2$, respectively.  For each good residue $s<G$, add one
+extra power of $p$ to the side having fewer copies of that residue.  If
+\[
+ c_I(s)=\#\{i\in I:i\equiv s\pmod p\},\qquad
+ c_J(s)=\#\{j\in J:j\equiv s\pmod p\},
+\]
+the resulting total exponent is
+\begin{equation}
+ W_{\rm alt}=3m+\sum_{0\leq s<G}\min\{c_I(s),c_J(s)\}.
+ \label{eq:insert-W-alt}
+\end{equation}
+Either alternative alone supplies an integerizer; their savings are not
+combined.
+\end{lemma}
+
+\begin{proof}
+The proof has three steps: summation, local order, and rank.
+
+\paragraph{\emph{Newton summation modulo $p$.}}
+We first need an elementary summation fact.  Suppose
+\[
+ V(X)=\sum_{\ell=0}^{D}v_\ell\binom X\ell,
+ \qquad v_\ell\in\mathbb Z_{(p)}.
+\]
+The ordinary series $\sum_{r\geq1}a^{-r}V(r)$ converges because $|a|>1$.
+We claim that it lies in $\mathbb Z_{(p)}$.  Write $z=a^{-1}$.  Then
+\begin{equation}
+ \sum_{r\geq1}z^r\binom r0=\frac z{1-z},
+ \qquad
+ \sum_{r\geq1}z^r\binom r\ell
+ =\frac{z^\ell}{(1-z)^{\ell+1}}\quad(\ell\geq1).
+ \label{eq:insert-newton-sums}
+\end{equation}
+The only denominators are powers of $1-a^{-1}$.  This is a $p$-unit because
+$p\nmid a(a-1)$.  Formula \eqref{eq:insert-newton-sums} also shows that
+reduction modulo $p$ may be done term by term in the finite Newton
+expansion.  We use no $p$-adic convergence of the infinite series.
+
+We also need a periodic form.  Let $V$ be a polynomial with
+$p$-integral Newton coefficients.  Suppose that
+$V(r+p^2)\equiv V(r)\pmod p$ for every integer $r$.  Then
+\begin{equation}
+ \sum_{r\geq1}a^{-r}V(r)
+ \equiv
+ \frac{\displaystyle\sum_{r=1}^{p^2}a^{-r}V(r)}
+      {1-a^{-p^2}}\pmod p.
+ \label{eq:insert-periodic-sum}
+\end{equation}
+To see this, write $S=\sum_{r\geq1}a^{-r}V(r)$ and
+$V(r+p^2)=V(r)+pV_1(r)$.  The polynomial $V_1$ is integer valued at
+$p$-adic integers.  So it has $p$-integral Newton coefficients.  By the
+first fact its sum is $p$-integral.  Splitting off the first $p^2$ terms gives
+$S=\sum_{r=1}^{p^2}a^{-r}V(r)+a^{-p^2}(S+pS_1)$ with $S_1$ $p$-integral.
+The denominator $1-a^{-p^2}$ is a unit since
+$a^{-p^2}\equiv a^{-1}\not\equiv1\pmod p$.
+
+\paragraph{\emph{Local order.}}
+For a residue class $t\pmod p$, let
+\[
+ \mathfrak m_t=(p,X-t)\subset\mathbb Z_{(p)}[X]
+\]
+and let $\operatorname{ord}_t(f)$ be the largest $e$ for which
+$f\in\mathfrak m_t^e$.  The local ring at $\mathfrak m_t$ is regular of
+dimension two.  Its associated graded ring is
+\begin{equation}
+ \operatorname{gr}_{\mathfrak m_t}\mathbb Z_{(p)}[X]
+ \simeq\mathbb F_p[P,Y],
+ \qquad P=\operatorname{in}(p),\quad Y=\operatorname{in}(X-t).
+ \label{eq:insert-associated-graded}
+\end{equation}
+This graded ring is an integral domain.  Three rules follow at once:
+\begin{enumerate}
+\item exact division by $X-t$ lowers local order by one.  Division by
+  $X-u$ with $u\not\equiv t\pmod p$ is division by a unit.  It does not
+  lower local order;
+\item differentiation lowers local order by at most one;
+\item if $x\equiv t\pmod p$, then evaluation gives
+  $v_p(f(x))\geq\operatorname{ord}_t(f)$.
+\end{enumerate}
+The second rule follows by differentiating monomials
+$p^r(X-t)^s$.  The third follows by substituting
+$X-t=p\,u$ with $u\in\mathbb Z_p$.
+
+Since $g<p^2$, Legendre's formula gives
+\begin{equation}
+ v_p(d)=3v_p(g!)=3q.
+ \label{eq:insert-d-valuation}
+\end{equation}
+Every residue class occurs $q$ times among $1,\ldots,g$.  The classes
+$1,\ldots,h$ occur once more.  Therefore
+\begin{equation}
+ \operatorname{ord}_t\mathcal N\geq3q,
+ \qquad
+ \operatorname{ord}_t\mathcal N\geq3q+3
+ \quad\text{if }t\equiv1,\ldots,h\pmod p.
+ \label{eq:insert-N-orders}
+\end{equation}
+If $n$ is bad, then $-n\equiv1,\ldots,h\pmod p$.  So
+$\mathcal N(-n)$ has valuation at least $3q+3$.  If $n$ is good, its
+valuation is at least $3q$.
+
+\paragraph{\emph{Scaled node sums.}}
+Take a residue $t\not\equiv-n\pmod p$.  There the denominator $X+n$ is a
+unit, and \eqref{eq:insert-N-orders} gives
+\[
+ \operatorname{ord}_tR_n\geq3q.
+\]
+At $t\equiv-n\pmod p$ division lowers order by one.  The numerator then
+has stronger bounds.  For bad $n$ both terms in the numerator have order at
+least $3q+3$.  Hence $\operatorname{ord}_tR_n\geq3q+2$.  For good $n$ the
+bound is $\operatorname{ord}_tR_n\geq3q-1$.  We take two derivatives and
+divide by $d$.  The local-order rules then give
+\begin{equation}
+ p^2\left(\frac{R_n}{d}\right)''(r)\in\mathbb Z_p
+ \quad(n\text{ bad}),
+ \qquad
+ p^3\left(\frac{R_n}{d}\right)''(r)\in\mathbb Z_p
+ \quad(n\text{ good})
+ \label{eq:insert-Rn-values}
+\end{equation}
+for every integer $r$.  By the finite-difference characterization of
+$\operatorname{Int}(\mathbb Z,\mathbb Z_p)$, the scaled polynomials have
+$p$-integral Newton coefficients.  So the Newton summation fact applies to
+their complete sums.
+
+Now take the finite-part term.  By hypothesis $n<U+1<p^2$.  So
+$v_p(s)\leq1$ for $1\leq s\leq n$, and
+$v_p(H_n(a))\geq-3$.  Also
+\begin{equation}
+ v_p(w(-n))\geq3\quad(n\text{ bad}),
+ \qquad v_p(w(-n))\geq0\quad(n\text{ good}).
+ \label{eq:insert-harmonic-bounds}
+\end{equation}
+So the $T$ and harmonic terms in \eqref{eq:insert-bn} have the same
+scaled integrality as in \eqref{eq:insert-Rn-values}.  We have proved
+\begin{equation}
+ p^2b_n(T)\in\mathbb Z_{(p)}[T]\quad(n\text{ bad}),
+ \qquad
+ p^3b_n(T)\in\mathbb Z_{(p)}[T]\quad(n\text{ good}).
+ \label{eq:insert-bn-integrality}
+\end{equation}
+
+\paragraph{\emph{The one-pole reduction.}}
+Suppose that $i$ is bad and $j$ is good.  Their residues are distinct.  So
+$j-i$ is a $p$-unit.  The first congruence in
+\eqref{eq:insert-bn-integrality} gives
+$p^3b_i(T)\equiv0\pmod p$.  The coefficient of $T$ in $p^3b_j(T)$ is
+also zero modulo $p$, because $p^3w(-j)a^j\equiv0\pmod p$.  Define
+\begin{equation}
+ \mathfrak d_j(a)=p^3b_j(0)\bmod p.
+ \label{eq:insert-Dj}
+\end{equation}
+It depends on neither $i$ nor $T$.  Since $p^3b_i(T)\equiv0$,
+\eqref{eq:insert-Bij} gives $p^3B_{ij}(T)\equiv-\mathfrak d_j(a)/(j-i)$.  That is,
+\begin{equation}
+ p^3B_{ij}(T)\equiv \frac{\mathfrak d_j(a)}{i-j}\pmod p
+ \qquad(i\text{ bad},\ j\text{ good}).
+ \label{eq:insert-one-pole}
+\end{equation}
+The transpose formula holds for a good row and a bad column.
+
+\paragraph{\emph{The bad--bad reduction.}}
+Let $i$ and $j$ both be bad.  Put
+\begin{equation}
+ \delta=j-i,\qquad
+ L_{ij}(X)=
+ \frac{\mathcal N(-i)(X+j)-\mathcal N(-j)(X+i)}{j-i}.
+ \label{eq:insert-Lij}
+\end{equation}
+Then the exact polynomial identity
+\begin{equation}
+ \mathcal N(X)-L_{ij}(X)=(X+i)(X+j)Q_{ij}(X)
+ \label{eq:insert-Qij}
+\end{equation}
+defines $Q_{ij}\in\mathbb Z_{(p)}[X]$.  Since $0<|\delta|<2m<p^2$, we have
+$v_p(\delta)\leq1$.  The two endpoint values of $\mathcal N$ have
+valuation at least $3q+3$.  So every coefficient of $L_{ij}$ satisfies
+\begin{equation}
+ v_p\bigl([X^\ell]L_{ij}\bigr)\geq3q+2.
+ \label{eq:insert-Lij-valuation}
+\end{equation}
+
+At an evaluation residue the vanishing factors fall into three cases.
+Write $t\equiv r\pmod p$.  First suppose that the opposite node residue
+$s\equiv-r\pmod p$ is bad.  Then
+$\operatorname{ord}_t\mathcal N\geq3q+3$.
+\begin{enumerate}
+\item If both $X+i$ and $X+j$ vanish at $t$, then $i\equiv j\pmod p$ and
+  $v_p(\delta)=1$.  Use the coordinate $X=t+Y$.  The constant coefficient
+ of $L_{ij}$ has valuation at least $3q+3$.  Here the extra factor $t+i$
+  or $t+j$ supplies one $p$ before division by $\delta$.  The coefficient
+  of $Y$ has valuation at least $3q+2$.  Hence
+  $\operatorname{ord}_tL_{ij}\geq3q+3$.
+  Dividing by two vanishing factors gives
+  $\operatorname{ord}_tQ_{ij}\geq3q+1$.
+\item If exactly one factor vanishes, the other is a unit.  From
+  \eqref{eq:insert-Lij-valuation} and the order $3q+3$ of $\mathcal N$,
+  division by the one vanishing factor gives
+  $\operatorname{ord}_tQ_{ij}\geq3q+1$.
+\item If neither factor vanishes, both are units.  Equations
+  \eqref{eq:insert-N-orders} and \eqref{eq:insert-Lij-valuation} give
+  $\operatorname{ord}_tQ_{ij}\geq3q+2$.
+\end{enumerate}
+Divide by $d$ and differentiate twice.  Then multiplication by $p^2$ makes
+each of the three cases divisible by $p$.  Thus
+\begin{equation}
+ p^2\left(\frac{Q_{ij}}d\right)''(r)\equiv0\pmod p
+ \quad\text{when }-r\text{ is a bad residue}.               
+ \label{eq:insert-Q-bad-residue}
+\end{equation}
+
+Now let $s\equiv-r\pmod p$ be good.  Both $X+i$ and $X+j$ are units in the
+local ring at $t=-s$.  Set
+$u(X)=((X+i)(X+j))^{-1}$.  The derivatives $u,u',u''$ are integral there.
+All coefficients of $L_{ij}/d$ are divisible by $p^2$.  So the $L_{ij}$ term
+vanishes after the present reduction.  Consider the terms of $(wu)''$
+containing $w$ and $w'$.  By the local-order bounds for $w,w',w''$, they also
+vanish after multiplication by $p^2$.  Consequently
+\begin{equation}
+ p^2\left(\frac{Q_{ij}}d\right)''(r)
+ \equiv\frac{p^2w''(r)}{(r+i)(r+j)}\pmod p
+ \quad\text{when }-r\text{ is good}.                         
+ \label{eq:insert-Q-good-residue}
+\end{equation}
+
+The identity \eqref{eq:insert-Qij} is exactly the divided-difference identity
+\[
+ \frac{R_i(X)-R_j(X)}{j-i}=Q_{ij}(X).
+\]
+Therefore \eqref{eq:insert-Bij} takes the following form:
+\begin{multline}
+ B_{ij}(T)=\sum_{r\geq1}a^{-r}\left(\frac{Q_{ij}}d\right)''(r)\\
+ +\frac{2w(-i)(a^iT-H_i(a))-2w(-j)(a^jT-H_j(a))}{j-i}.
+ \label{eq:insert-B-Q}
+\end{multline}
+For bad $i,j$ consider the second term in \eqref{eq:insert-B-Q}.  We have
+$v_p(w(-i)),v_p(w(-j))\geq3$, $v_p(H_i),v_p(H_j)\geq-3$ and
+$v_p(j-i)\leq1$.  So its $T$ part has valuation at least $2$.  Its
+harmonic part has valuation at least $-1$.  After multiplication by $p^2$
+both vanish modulo $p$.
+
+It remains to sum the good-residue contribution.  Define
+\[
+ \varpi(r)=p^2w''(r)\pmod p.
+\]
+The polynomial $p^2w''$ has $p$-integral Newton coefficients.  Its values
+have period $p^2$ modulo $p$.  To see this, apply Taylor expansion and the
+local-order rule.  For every $\ell\geq1$ they give
+\begin{equation}
+ v_p\!\left(\frac{p^{2\ell+2}}{\ell!}
+              w^{(\ell+2)}(r)\right)
+ \geq \ell-v_p(\ell!)\geq1,
+ \label{eq:insert-z-period}
+\end{equation}
+where the last inequality uses $p\geq5$.  Now take $V=p^2(Q_{ij}/d)''$.
+By the case analysis above its values are $p$-integral.  So it has
+$p$-integral Newton coefficients.  By
+\eqref{eq:insert-Q-bad-residue} and \eqref{eq:insert-Q-good-residue},
+$V(r)\equiv \varpi(r)/((r+i)(r+j))$ when $-r$ is good and $V(r)\equiv0$
+otherwise.  The factor $1/((r+i)(r+j))$ modulo $p$ depends only on
+$r\bmod p$.  So $V(r+p^2)\equiv V(r)\pmod p$.  Hence
+\eqref{eq:insert-periodic-sum} applies to $V$.  For a good residue $s<G$, set
+\begin{equation}
+ \mathfrak c_s(a)=\frac{\displaystyle
+       \sum_{\substack{1\leq r\leq p^2\\-r\equiv s\ (p)}}a^{-r}\varpi(r)}
+       {1-a^{-p^2}}\pmod p.
+ \label{eq:insert-Cs}
+\end{equation}
+Grouping the terms in \eqref{eq:insert-B-Q} by $s\equiv-r\pmod p$ gives
+\begin{equation}
+ p^2B_{ij}(T)
+ \equiv \sum_{0\leq s<G}
+       \frac{\mathfrak c_s(a)}{(i-s)(j-s)}\pmod p
+ \qquad(i,j\text{ bad}).
+ \label{eq:insert-bad-bad}
+\end{equation}
+All displayed denominators are $p$-units, since $i,j$ are bad and $s$ is
+good.  The expression is independent of $T$.
+
+\paragraph{\emph{Rank count and valuation transfer.}}
+Take a bad row $i$ and a good column $j$.  Then the reduction
+\eqref{eq:insert-one-pole} is a Cauchy feature with the good residue $s\equiv j\pmod p$.
+For a bad row and a bad column, \eqref{eq:insert-bad-bad} is a sum of the
+same features $1/(i-s)$, $s<G$.  Now take the block of bad rows, with all
+columns.  It factors through the $G$ good residue features.  So its rank is
+at most $G$.  Bad rows with the same residue modulo $p$ are also identical in
+every column.  For good columns this follows from
+\eqref{eq:insert-one-pole}.  For bad columns it follows from
+\eqref{eq:insert-bad-bad}.  So the rank is also at most $h$, the number of
+bad residue classes.  The bad-row block has rank at most $\min(G,h)$.
+Adding the $N_I$ good rows gives
+\begin{equation}
+ \operatorname{rank}\overline{\widehat B}
+ \leq N_I+\min(G,h).
+ \label{eq:insert-rank-I}
+\end{equation}
+The same argument for the transpose gives the bound
+$N_J+\min(G,h)$.  Taking the smaller of the two proves
+\eqref{eq:insert-rank-bound}.
+
+The factors in \eqref{eq:insert-scaled-B} are the row and column
+weights.  Bad nodes receive one power and good nodes two powers.  Thus
+\begin{equation}
+ \det\widehat B=p^{W_{\rm nat}}\det B.
+ \label{eq:insert-det-scaling}
+\end{equation}
+The Gauss valuation on $\mathbb Q_p(T)$ has residue field $\mathbb F_p(T)$.
+Let a matrix have residue rank at most $r$.  Gaussian elimination over the
+valuation ring shows that its determinant has valuation at least $m-r$.
+Equivalently, every $T$-coefficient of the determinant has valuation at
+least $m-r$.  We apply this to $\widehat B$.  With
+\eqref{eq:insert-rank-bound} it proves \eqref{eq:insert-rank-valuation}.
+
+Finally, the one-pole bounds give $p^3B_{ij}\in\mathbb Z_{(p)}[T]$ for
+distinct residues.  A same-good-residue pair can lose one further power in
+the divided difference.  It is covered by $p^4B_{ij}$.  The bad--bad and
+mixed cancellations above show that $p^3B_{ij}$ is integral in all remaining
+cases.  So one row power and two column powers cover every edge except the
+same-good-residue edges.  For a good residue $s$ only those edges need one
+extra power.  Put that extra power on the side with fewer copies.  This gives
+\eqref{eq:insert-W-alt} and completes the proof.
+\qedhere
+\end{proof}

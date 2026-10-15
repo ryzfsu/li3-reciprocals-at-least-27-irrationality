@@ -1,0 +1,1298 @@
+\section{Determinant construction}\label{sec:determinant}
+
+Fix an integer $a$ with $|a|\ge2$. We work in one of the two towers
+below. In each, $m$ is a positive multiple of $4$ and $g<m$. Put
+\[
+ \rho=\frac gm,\qquad I=\{0,\ldots,m-1\},\qquad
+ J=\{m,\ldots,2m-1\}.
+\]
+The positive tower is
+\[
+ (m,g)=(12Q,4Q),\qquad \rho=\frac13,
+\]
+and the negative tower is
+\[
+ (m,g)=(16Q,5Q),\qquad \rho=\frac5{16}.
+\]
+Here and below $Q$ is a positive integer. The nonvanishing section
+specializes it to $Q=p^k$.
+Define
+\[
+ w(r)=\binom{r-1}{g}^{3},\qquad
+ F_{ij}(r)=\frac{w(r)}{(r+i)(r+j)},\qquad K_{ij}(r)=F_{ij}''(r),
+\]
+and
+\[
+ M_{ij}(a)=\sum_{r\ge1}a^{-r}K_{ij}(r),\qquad i\in I,\ j\in J.
+\]
+Polynomial division at the two poles gives
+\[
+ F_{ij}(r)=P_{ij}(r)+\frac{c_i}{r+i}+\frac{c_j}{r+j},\quad
+ c_i=\frac{w(-i)}{j-i},\quad c_j=-\frac{w(-j)}{j-i}.
+\]
+At a pole of the partial fractions we take the finite part. Put
+$b=a-1$, and define
+\[
+ \begin{aligned}
+ E_{ij}(a)&=\sum_{r\ge1}a^{-r}P_{ij}''(r)
+ -2c_i a^i\sum_{n=1}^{i}\frac{a^{-n}}{n^3}
+ -2c_j a^j\sum_{n=1}^{j}\frac{a^{-n}}{n^3},\\
+ C_{ij}(a)&=2c_i a^i+2c_j a^j,\qquad
+ G_{m,a}(T)=\det(E(a)+TC(a)).
+ \end{aligned}
+\]
+Empty sums are zero.
+
+\begin{lemma}\label{lem:decomposition}
+For every integer $a$ with $|a|\ge2$,
+\[
+ M(a)=E(a)+\operatorname{Li}_3(1/a)C(a).
+\]
+The polynomial $G_{m,a}$ has degree at most $m$.
+\end{lemma}
+
+\begin{proof}
+Differentiating the partial fractions gives
+\[
+ F_{ij}''=P_{ij}''+\frac{2c_i}{(r+i)^3}
+                    +\frac{2c_j}{(r+j)^3}.
+\]
+Also
+\[
+ \sum_{r\ge1}\frac{a^{-r}}{(r+i)^3}
+ =a^i\left(\operatorname{Li}_3(1/a)
+              -\sum_{n=1}^i\frac{a^{-n}}{n^3}\right).
+\]
+All series converge absolutely because $|a|>1$. Substitution gives the
+matrix identity. Each matrix entry is affine in $T$. This proves the
+degree bound. At a pole we differentiate the numerator before taking the
+finite part. With $\delta=j-i$ this gives
+\[
+ P_{ij}''(-i)=\frac{w'''(-i)}{3\delta}
+ -\frac{w''(-i)}{\delta^2}+\frac{2w'(-i)}{\delta^3}
+ +\frac{2(w(-j)-w(-i))}{\delta^4},
+\]
+ and, with the same $\delta=j-i$,
+\[
+ P_{ij}''(-j)=-\frac{w'''(-j)}{3\delta}
+ -\frac{w''(-j)}{\delta^2}-\frac{2w'(-j)}{\delta^3}
+ +\frac{2(w(-i)-w(-j))}{\delta^4}.
+\]
+These are finite parts at the poles of the partial fractions. They are the
+values used below.
+\qedhere
+\end{proof}
+
+\section{The determinant criterion}\label{sec:criterion}
+
+The following fact is the elementary limsup variant of the determinant
+criterion in \cite[Sec.~3]{Zh}. We prove the exact form used here.
+We use the extended-real convention $\log 0=-\infty$ in its limsup bounds.
+
+\begin{fact}[Determinant criterion]\label{fact:criterion}
+Let $\theta$ be real. For a fixed base $a$, let $G_{m,a}(T)$ have degree at
+most $m$, and let $m_k$ increase. Suppose positive rationals $\Delta_m(a)$
+satisfy
+\[
+ \Delta_m(a)G_{m,a}(T)\in\mathbb Z[T],\qquad
+ \limsup_k m_k^{-2}\log\Delta_{m_k}(a)\le\tau(a),
+\]
+and
+\[
+ \limsup_k m_k^{-2}\log|G_{m_k,a}(\theta)|\le-\alpha(a),
+ \qquad \alpha(a)>\tau(a).
+\]
+If every fixed rational $\xi$ satisfies
+$G_{m_k,a}(\xi)\ne0$ for all sufficiently large $k$, then $\theta$ is
+irrational.
+\end{fact}
+
+\begin{proof}
+If $\theta=u/v$ in lowest terms, then
+\[
+ Z_m=v^m\Delta_m(a)G_{m,a}(u/v)
+   =\sum_{\ell=0}^m(\Delta_m\gamma_{m,\ell})u^\ell v^{m-\ell}
+\]
+is a nonzero integer whenever
+$G_{m,a}(T)=\sum_\ell\gamma_{m,\ell}T^\ell$ is nonzero at $u/v$.
+The factor $v^m$ is $\exp(O(m))$. So
+$\limsup m_k^{-2}\log|Z_{m_k}|\le\tau(a)-\alpha(a)<0$, and hence
+$|Z_{m_k}|\to0$. This is a contradiction. In the application,
+$\Delta_m=D_m(a)$ from \eqref{eq:9}. The prime-power tower in
+Section~\ref{sec:nonvanishing} supplies the nonvanishing hypothesis.
+\qedhere
+\end{proof}
+
+\section{Coefficient integerization}\label{sec:arithmetic}
+
+The arithmetic construction is coefficientwise. It uses no primitive-content
+or exact-gcd assertion. Put
+\[
+ U=2m-1,\quad L=\operatorname{lcm}(1,\ldots,U),\quad
+ N=\frac{m^2}{8}-\frac m2,\quad H=3g-3,
+\]
+and
+\[
+ H_*=\left\lfloor\frac{(H+1)^2}{4}\right\rfloor
+     =\left\lfloor\frac{(3g-2)^2}{4}\right\rfloor .
+\]
+For a prime $p$, let $\ell_p=v_p(L)$. Let
+$\kappa_n$ be $1$ when
+$n\bmod p\ge p-(g\bmod p)$, and $0$ otherwise.
+
+\subsection{Formal divisors}
+
+We use the coefficientwise Newton argument of Lemma~4.1 of \cite{ZhB},
+together with its divided-difference lemmas. Newton interpolation, two divided
+differences, and two derivatives give
+\begin{equation}
+ L^{4m}b^{mH}G_{m,a}(T)\in\mathbb Z[a,T].                 \label{eq:1}
+\end{equation}
+We use the present values of $g$. The four copies of $L$ account for the two
+divided differences and the two derivatives. The pole and harmonic terms
+need no extra divisor. Their complete denominators include
+$1/(j-i)$ and $1/((j-i)n^3)$, respectively. These divide $L^4$ because
+$|j-i|,n\le U$. In the Newton basis we use the
+two denominator identities
+\begin{equation}
+ \sum_{r\ge1}a^{-r}\binom r k
+   =\frac{a^{-k}}{(1-a^{-1})^{k+1}}\ (k\ge1),\qquad
+ \sum_{r\ge1}a^{-r}\binom{r-1}{k}
+   =\frac{a^{-k-1}}{(1-a^{-1})^{k+1}}.                    \label{eq:newton-denominators}
+\end{equation}
+Let $V$ be an integer-valued polynomial on $\mathbb Z^k$. Suppose it has
+degree at most $D$ in one variable $X$. Put
+$L_D=\operatorname{lcm}(1,\ldots,D)$. Then
+$L_D\,\partial_XV$ and $L_D\,(V(X,\cdot)-V(Y,\cdot))/(X-Y)$ are integer
+valued.
+It suffices to take $V=\binom Xn U$ with $n\le D$ and $U$ integer valued in
+the other variables. Vandermonde's identity gives
+$\binom Xn-\binom Yn=\sum_{k\ge1}\binom{X-Y}k\binom Y{n-k}$, and
+$\binom{X-Y}k/(X-Y)=\binom{X-Y-1}{k-1}/k$. For the derivative,
+$\frac{\dd}{\dd X}\binom Xn=\sum_{k=1}^n\frac{(-1)^{k-1}}k\binom X{n-k}$.
+Each of the two divided differences in $P_{ij}''$ therefore costs one
+factor $L_D$. So does each of the two derivatives. Here $D\le U$.
+With $L_D\mid L$ this accounts for the four copies of $L$ in \eqref{eq:1}. Thus a degree-$d$ Newton expansion
+introduces only denominators dividing the appropriate power of
+$L_d=\operatorname{lcm}(1,\ldots,d)$.
+The identity is formal in $a$ and remains valid at negative integer bases.
+
+Write $d=(g!)^3$ and take a polynomial $P\in\mathbb Z[1/d][X]$. Its
+rational generating function has two expansions
+\begin{equation}
+ \sum_{r\ge1}a^{-r}P(r)=-\sum_{k\ge0}a^kP(-k),                 \label{eq:formal-expansions}
+\end{equation}
+where the left side expands at infinity and the right side at zero.
+In the determinant calculation the right-hand expansion is
+used after multiplication by the factor $a^N$ below.
+Thus the displayed identity is an identity of formal power series at the
+required order.
+For $W\in\mathbb Z[X]$ we also use two divided-difference facts
+\begin{equation}
+ \frac{W(X)-W(Y)}{X-Y},\qquad
+ \frac{W'(X)-W'(Y)}{X-Y}\in\mathbb Z[X,Y].                    \label{eq:divided-differences}
+\end{equation}
+Take $W=d w$. The divided differences in the partial fractions then lie
+in $\mathbb Z[1/d][X,Y]$. In particular every coefficient of
+$P_{ij}(r)$ is a polynomial in $(i,j)$ over $\mathbb Z[1/d]$.
+
+Translate $T=X+\ell(a)$, where
+$\ell(a)=\sum_{s\ge1}a^s/s^3$. Away from the node sets, the coefficient of
+$a^k$ in $E+(X+\ell(a))C$ is $-F_{ij}''(-k)$. Away from the node sets it
+has rank at most three. After two differentiations it is a sum of the
+three Cauchy features $(i-k)^{-1},(i-k)^{-2},(i-k)^{-3}$. At a node the
+finite part adds one exceptional feature. Suppose
+$k\in I$ is the node, and put $\delta=j-k$ for $j\in J$. The
+finite-part formula and the harmonic correction give
+\begin{equation}
+\begin{aligned}
+ [a^k]\bigl(E+(X+\ell(a))C\bigr)_{k j}
+  ={}\!&-\frac{w'''(-k)}{3\delta}+\frac{w''(-k)}{\delta^2}
+      -\frac{2w'(-k)}{\delta^3}\\
+ &\quad+\frac{2w(-k)}{\delta^4}
+      +\frac{2Xw(-k)}{\delta}.
+\end{aligned}
+\label{eq:node-coefficient}
+\end{equation}
+The transposed formula holds when the node is in $J$. Thus a node row is a
+linear combination of the four Cauchy row features
+$\delta^{-1},\delta^{-2},\delta^{-3},\delta^{-4}$. The $X$ term is absorbed
+in the coefficient of $\delta^{-1}$. A non-node row uses only the first
+three. This proves the rank bound four, including the finite part. It is the
+calculation above. Thus at most four columns per power
+$a^k$ can contribute.
+The order is therefore at least
+\[
+ \sum_{j=0}^{m-1}\left\lfloor\frac j4\right\rfloor
+ =4\sum_{r=0}^{m/4-1}r=N.
+\]
+Consequently coefficientwise multilinearity gives
+\[
+ a^N\mid\det(E+(X+\ell(a))C).
+\]
+Since $\ell(0)=0$, translating back preserves this divisibility.
+
+At $b=0$ we use the following degree count. The polynomial $dw$ is monic of
+degree $3g$. After polynomial division and two derivatives, $P_{ij}''(X)$
+therefore has total degree at most $3g-4$ in $(X,i,j)$. Equivalently,
+\[
+ P_{ij}''(r)=d^{-1}\sum_{t=0}^{3g-4}p_t(i,j)r^t,
+ \qquad \deg_{i,j}p_t\le 3g-4-t.
+\]
+The standard identity for $\sum_{r\ge1}a^{-r}r^t$ has denominator
+$b^{t+1}$. Hence the coefficient of $b^{-s}$ receives terms only from
+$t\ge s-1$. Its total degree in $(i,j)$ is at most
+$3g-4-(s-1)=H-s$. The finite harmonic terms and $C$ are regular at
+$b=0$. Taking forward differences of orders $u$ and $v$ lowers the pole
+order to $(H-u-v)_+$. Suppose $k$ entries of a determinant term have
+a positive pole bound. The distinct row and column orders then cost at
+least $k(k-1)$. Hence the total pole order is at most
+\[
+ k(H+1-k)\le H_*.
+\]
+This is the forward-difference argument of \cite[Lemma~4.8]{ZhB}. There $H_m$ is
+replaced by
+$H_* =\max_{0\le k\le H+1}k(H+1-k)$. The harmonic terms and $C$ have no
+pole at $b=0$. The row and column operations are unimodular. Thus
+\begin{equation}
+ b^{mH-H_*}\mid L^{4m}b^{mH}G_{m,a}(T).                   \label{eq:2}
+\end{equation}
+The polynomials $a$ and $a-1$ are monic and coprime. So
+\eqref{eq:1}--\eqref{eq:2} give the integral formal quotient
+\[
+G_{m,a}(T)=\frac{a^N R_m(a,T)}{L^{4m}(a-1)^{H_*}},
+\qquad R_m\in\mathbb Z[a,T].
+\]
+
+\subsection{Local prime weights}
+
+The following weights are valid coefficientwise for the pencil $E+TC$,
+including finite parts. The branches are applied in the displayed order.
+The low-prime rank branch assumes $p\nmid a(a-1)$. If
+$p\mid a(a-1)$ we use the endpoint weight $e_p^{\rm end}$ defined just before
+\eqref{eq:9} instead. Primes $p>U$ have weight
+zero. If $p<5$ or $p^2\le U+g$, use $4m\ell_p$. Now let $p\le g$, $p\ge5$,
+and $p^2>U+g$. The entry demand is
+\begin{equation}
+ \mathfrak b_{ij}=3-\kappa_i\kappa_j+
+             (1-\kappa_i){\bf1}_{i\equiv j\pmod p}.       \label{eq:3}
+\end{equation}
+The row and column weights $2-\kappa_n$ dominate this demand.
+
+The saving rests on the following coefficientwise lemma. Its proof
+includes finite parts and the $T$ coefficient.
+\input{rank-lemma.tex}
+
+For the $p>g$ branch, write
+\[
+ \widetilde c_{i,j}=\frac{w(-i)}{j-i},\qquad
+ \widetilde c_{j,i}=-\frac{w(-j)}{j-i}
+\]
+for the normalized pole coefficients in the $(i,j)$ entry. To avoid
+overloading the low-prime symbol $\kappa_n$, put
+\[
+ \chi_n={\bf1}_{\{n\bmod p\ge p-g\}}.
+\]
+In the non-generic branch assume $p^2>U+g$ and $p\nmid a(a-1)$. The
+remaining small primes use the first line of \eqref{eq:W-cons-piecewise}.
+Since $p>g$, $v_p(g!)=0$, and
+\[
+ w(-n)=(-1)^{3g}\frac{\prod_{s=1}^{g}(n+s)^3}{(g!)^3}.
+\]
+The interval of factors has length $g<p$, so
+\[
+ v_p(w(-n))\ge3\chi_n,
+ \qquad v_p(j-i)=\varepsilon_{ij}\le1.
+\]
+The divided-difference formulas for $P_{ij}$ have coefficients in
+$\mathbb Z_{(p)}[r]$; hence $P_{ij}\in\mathbb Z_{(p)}[r]$. Also
+$v_p(s)\le1$ for $1\le s\le U$, and therefore
+\[
+ v_p(H_n(a))\ge-3{\bf1}_{n\ge p},\qquad
+ v_p(\widetilde c_{i,j})\ge3\chi_i-\varepsilon_{ij},\qquad
+ v_p(\widetilde c_{j,i})\ge3\chi_j-\varepsilon_{ij}.
+\]
+The $C$ coefficient is a sum of the two pole terms, so
+\[
+ v_p(C_{ij})\ge3\min(\chi_i,\chi_j)-\varepsilon_{ij}.
+\]
+Thus the entry demand is
+\[
+\mathfrak b_{ij}^{>g}=\max\{0,\,3\mathbf1_{i\ge p}-3\chi_i+\varepsilon_{ij},\,
+                    3\mathbf1_{j\ge p}-3\chi_j+\varepsilon_{ij}\}.
+\]
+The samples are $0\le n\le3g-4<m$, so a pole $n=j$ is never sampled. The
+entrywise bounds above and the two divided-difference formulas give the
+coefficientwise valuation transfer for this $p>g$ branch. The remaining
+expansion is a finite polynomial calculation. The displayed edge demand
+\eqref{eq:3} refers instead to the low-prime branch $p\le g$ above. So do
+the row and column weights $2-\kappa_n$ and the coefficientwise determinant
+bound in \eqref{eq:insert-rank-valuation}. They follow from the local-order
+calculation in Lemma~\ref{lem:residue-copy-rank-insert}.
+
+For $g<p<m$, put $u=p-g$. The potential calculation of
+\cite[Lemma~4.5 and Lemma~4.6, case (4)]{ZhB} is reproduced here in its
+needed form. There are five edge types: active--active, active--killed,
+low--active, low--killed, and killed--killed. Their demands are bounded above,
+respectively, by $4$, $3$, $4$, $0$, and $\varepsilon_{ij}$, where
+$\varepsilon_{ij}=v_p(j-i)\in\{0,1\}$.
+A node in $[0,u)$ is active and one in
+$[u,p)$ is killed. A node $n\ge p$ is active if its residue is active.
+Call a row or column low when its index is $<u$; nodes in $[u,p)$ are
+killed. Let $R$ and $C$ count active rows and columns whose indices are
+$\ge p$. Let
+\[
+ \Sigma_{\rm kill}=\sum_{z=p-g}^{p-1}\min(c_I(z),c_J(z)),
+ \quad c_I(z)=\#\{i\in I:i\equiv z\pmod p\},
+\]
+where $c_J(z)=\#\{j\in J:j\equiv z\pmod p\}$. The two valid potentials are
+\begin{equation}
+ W_A=3(R+C)+u+\Sigma_{\rm kill},\qquad
+ W_B=m+2(R+C)+u.                                         \label{eq:5}
+\end{equation}
+In $W_A$, active rows and columns with index at least $p$ receive three
+units. The $u$ low active rows contribute the displayed $u$. The smaller
+side of each killed residue receives one extra unit. In $W_B$, active rows
+with index at least $p$ receive two units, low rows one, and killed rows zero.
+Active columns receive three and killed columns one. The edge demands are
+covered in the five cases active--active, active--killed, low--active,
+low--killed, and killed--killed. For $m\le p\le U$, put
+\[
+ r_p=2m-p,\qquad h_p=(2m+g-2p)_+,
+\]
+and use the row and column weights
+\[
+ \omega_i^{\rm tail}={\bf1}_{i<r_p}\quad(i\in I),\qquad
+ \omega_j^{{\rm tail}\prime}=3\,\mathbf{1}_{\{p\le j<2m,\ j-p<p-g\}}
+ \quad(j\in J).
+\]
+There are $r_p$ same-residue edges $j=i+p$, covered by their row units.
+The positive nonsame-residue demands have a good column and are covered by
+its three units. The number of such columns is $r_p-h_p$. Thus the total
+weight is
+\begin{equation}
+ W_{\rm tail}=\sum_{i\in I}\omega_i^{\rm tail}
+ +\sum_{j\in J}\omega_j^{{\rm tail}\prime}
+ =r_p+3(r_p-h_p)=4(2m-p)-3(2m+g-2p)_+.                    \label{eq:6}
+\end{equation}
+
+For the low-prime profile, let $x=p/m$ and write
+$\nu=\lfloor g/p\rfloor$; thus
+$\rho/(\nu+1)<x<\rho/\nu$. Put
+\[
+ \gamma=(\nu+1)x-\rho,\quad\eta=\rho-\nu x,\quad
+ k_\ell=\lfloor\ell/x\rfloor,
+\]
+\[
+ A_\ell=k_\ell\gamma+\min(\ell-k_\ell x,\gamma),\quad
+ A=A_1,\quad B=A_2-A_1,
+\]
+and
+\[
+ D(x)=\int_0^\gamma\min(c_I(t),c_J(t))\,\dd t,
+\]
+where, explicitly,
+\[
+ c_I(t)=\#\{k\ge0:0\le t+kx<1\},\qquad
+ c_J(t)=\#\{k\ge0:1\le t+kx<2\}.
+\]
+Take the natural cost $W_{\rm nat}=2m+N_I+N_J$. Relative to it, the
+baseline full-pencil and low-prime rank savings are
+\begin{equation}
+\begin{aligned}
+ w_0&=\max(0,1-A-\gamma,1-B-\gamma,A+B-1-D),\\
+ w_{\rm low}&=\max(w_0,1-A-\eta,1-B-\eta).
+\end{aligned}                                               \label{eq:7}
+\end{equation}
+Here $w_0$ is the ordinary rank/potential saving. The term $A+B-1-D$
+comes from the entrywise alternative $W_{\rm alt}$ in
+Lemma~\ref{lem:residue-copy-rank-insert}. Thus the low-prime cost is
+$W_{\rm nat}-mw_{\rm low}(x)$. The conservative branch weight in
+\eqref{eq:9} is
+\begin{equation}
+W_{\rm cons}(p)=
+\begin{cases}
+4m\ell_p,&p<5\ \text{or}\ p^2\le U+g,\\
+\min\{4m,W_{\rm nat}-mw_{\rm low}(p/m)\},
+   &5\le p\le g,\ p^2>U+g,\\
+\min\{4m,W_A,W_B\},&g<p<m,\\
+W_{\rm tail},&m\le p\le U,\\
+0,&p>U.
+\end{cases}                                                   \label{eq:W-cons-piecewise}
+\end{equation}
+At a cell boundary $p\mid g$ with $p^2>U+g$, use the second line and
+retain that finite prime separately. Away from such boundaries, define
+$w_{\rm cons}(x)$ as the limit of $W_{\rm cons}(p)/m$ when $p/m\to x$;
+at a boundary take the lower one-sided value. At an actual prime location
+we use the displayed finite value $W_{\rm cons}(p)/m$. For the remaining layers $\nu\ge11$, put
+$\theta=\gamma/x$. Then
+$T_0=A+B=2\theta+\varepsilon_2$ with $0\le\varepsilon_2\le x/4$.
+We need only a lower bound for the available saving:
+\[
+ w_{\rm low}\ge1-\min(A,B)-\min(\gamma,\eta)
+       \ge1-\frac {T_0}2-\frac x2.
+\]
+Consequently the conservative normalized cost satisfies
+\begin{equation}
+ w_{\rm cons}(x)\le1+3\theta+\frac78x.                    \label{eq:8}
+\end{equation}
+
+Set $\delta_0=\rho/11$. The change of variables
+$x=\rho/(\nu+1-\theta)$ gives
+$\dd x=\rho(\nu+1-\theta)^{-2}\dd\theta$. The midpoint estimate
+\[
+ \int_0^1\theta\frac{\rho\,\dd\theta}{(\nu+1-\theta)^2}
+ \le \frac12\int_0^1\frac{\rho\,\dd\theta}{(\nu+1-\theta)^2}
+      +\frac{\rho}{6\nu^3}
+\]
+and $\sum_{\nu\ge11}\nu^{-3}\le2/441$ give
+\begin{equation}
+ \int_0^{\delta_0} w_{\rm cons}(x)\,\dd x
+ \le\frac52\delta_0+\frac{\rho}{441}+\frac7{16}\delta_0^2.   \label{eq:16a}
+\end{equation}
+Let $\vartheta$ be Chebyshev's function. For the finite fallback range use a
+separate cutoff $\varepsilon>0$:
+\begin{equation}
+ \sum_{\sqrt{U+g}<p\le\varepsilon m}W_{\rm cons}(p)\log p
+ \le4m\,\vartheta(\varepsilon m)
+ =(4\varepsilon+o(1))m^2.                                \label{eq:16b}
+\end{equation}
+The generic branch $p^2\le U+g$ contributes
+$O(m^{3/2}\log m)=o(m^2)$. A cell-boundary prime here means a prime
+$p\mid g$ with $p^2>U+g$. It is handled by the second line of
+\eqref{eq:W-cons-piecewise}; there is at most one such prime, and its
+contribution is $O(m\log m)$.
+
+The endpoint weight is
+\[
+ e_p^{\rm end}=4m\,\ell_p+H_*v_p(a-1)-Nv_p(a).
+\]
+The local branch is
+admissible only when $p\nmid a(a-1)$. Thus we define the coefficientwise
+integerizer piecewise by
+\begin{equation}
+\begin{gathered}
+ e_p=\begin{cases}
+ e_p^{\rm end},&p\mid a(a-1),\\
+ \min\{e_p^{\rm end},W_{\rm cons}(p)\},&p\nmid a(a-1),
+ \end{cases}\\
+ D_m(a)=\prod_p p^{e_p}.
+\end{gathered}                                               \label{eq:9}
+\end{equation}
+Then $D_m(a)$ is a positive rational number. It satisfies
+\begin{equation}
+ D_m(a)G_{m,a}(T)\in\mathbb Z[T].                          \label{eq:10}
+\end{equation}
+Primes dividing $a(a-1)$ take the first branch. So the low-prime unit
+hypotheses are never used there. For these primes the $4m\ell_p$ part totals
+$O(m\log m)$. The endpoint-divisor terms remain explicitly in
+$e_p^{\rm end}$ and in the rate below. We now justify the two exponents. The first
+exponent in \eqref{eq:9} follows from the two formal divisors.
+For the second, use the separate coefficientwise branch that realizes the
+displayed minimum in $W_{\rm cons}(p)$. The ordinary row and column
+potentials give the baseline part of $w_0$ and $w_{\rm low}$. The entrywise
+alternative is the $W_{\rm alt}$ term in Lemma~\ref{lem:residue-copy-rank-insert}.
+The remaining low-prime saving is the coefficientwise rank bound proved
+there over the Gauss valuation ring. Thus the low-prime saving is not inferred
+from potentials alone. For $g<p<m$, the two valid potential covers are
+$W_A,W_B$. For $m\le p\le U$ the displayed tail cover gives
+$W_{\rm tail}$. Expanding the determinant after applying any one selected
+cover gives the corresponding valuation bound. Division by $b^{mH}$ accounts
+for the last term in \eqref{eq:9}. Each branch alone supplies an integerizer,
+so taking the pointwise minimum does not combine savings.
+
+\subsection{The limiting arithmetic rates}
+
+The exact low-layer increments for $\nu=1,\ldots,10$, in order, are
+\begin{equation}
+\begin{aligned}
+\rho=5/16:\ &47/6720,\ 69/41888,\ 387/637840,\ 6219367/21864360960,\\
+&75/484352,\ 180207/1941459520,\ 317501/5311088640,\\
+&18175/441971712,\ 11263/382261760,\ 155/7117824;\\[2pt]
+\rho=1/3:\ &25/3024,\ 1/540,\ 4/5859,\ 11/34344,\ 7/40095,\\
+&17/161460,\ 2/29295,\ 23/492048,\ 13/389367,\ 29/1175580.
+\end{aligned}                                                    \label{eq:11}
+\end{equation}
+Their sums are
+\begin{equation}
+ L_{5/16}=\frac{1111075051739028956195167}
+ {111864885256841731511777280},\quad
+ L_{1/3}=\frac{85930118826854129}{7423773458762901240}.    \label{eq:12}
+\end{equation}
+Write $I_{\rm high}=\int_\rho^1w_{\rm cons}(x)\,\dd x$ and
+$I_{\rm tail}=\int_1^2W_{\rm tail}(x)\,\dd x=2-3\rho^2/4$. Let
+$I_{\nu,0}$ and $I_{\nu,1}$ denote the baseline and rank-improved layer
+integrals. The baseline profile is a minimum of costs. Its normalized costs
+are $4$, $W_{\rm nat}/m-w_0$, $W_A/m$, $W_B/m$, and $W_{\rm tail}/m$.
+For $1\le x\le2$ the last one has continuum form
+$w_{\rm tail}(x)=4(2-x)-3(2+\rho-2x)_+$.
+The ten disjoint increments in \eqref{eq:11} are the exact integrals of
+the improvement $w_{\rm low}-w_0$. Each is taken after the pointwise minimum
+with the other valid branches. The replay uses the change of variables above,
+the midpoint remainder $\rho/(6\nu^3)$, and
+$\sum_{\nu\ge11}\nu^{-3}\le2/441$ to include the tail.
+Define the replay's explicit upper expression by
+\begin{equation}
+ I_{\rm upper}=I_{\rm high}+I_{\rm tail}
+   +\sum_{\nu=1}^{10}I_{\nu,1}
+   +\frac52\delta_0+\frac{\rho}{441}+\frac7{16}\delta_0^2,
+ \qquad \delta_0=\rho/11.                                 \label{eq:I-upper}
+\end{equation}
+The exact profile replay gives
+\[
+\begin{array}{c|c|c|c}
+\rho&I_{\rm high}&I_{\rm tail}&I_{\rm upper}\\ \hline
+5/16&98909/53760&1973/1024&4.6343048426478513377\ldots\\
+1/3&125/72&23/12&4.5805812506617284878\ldots
+\end{array}
+\]
+The profile replay recomputes the finite rational layer integrals. It verifies
+that this upper integral is below the following rational bounds:
+\begin{equation}
+ \begin{aligned}
+ S_-&=\frac{8108653419015955202861020329389}
+ {1747888832138152054871520000000}<4.639112779899639,\\
+ S_+&=\frac{106301329053850833773025543473}
+ {23199292058634066375000000000}<4.582093659805828.
+ \end{aligned}                                                \label{eq:13}
+\end{equation}
+Thus $S_\rho$ is directly a rational upper bound for
+$\int_0^2w_{\rm cons}(x)\,\dd x$.
+
+For fixed $\varepsilon>0$, \eqref{eq:16b} controls
+$p\le\varepsilon m$. On each fixed cell
+$\varepsilon\le p/m\le2$, residue counts are affine up to $O(1)$. We then
+apply the prime number theorem with partial summation, in the standard form
+of \cite{Davenport}. This gives
+\begin{equation}
+ \frac1{m^2}\sum_{\alpha m<p<\beta m}
+ W_{\rm cons}(p)\log p
+ \longrightarrow\int_\alpha^\beta w_{\rm cons}(x)\,\dd x. \label{eq:14}
+\end{equation}
+The at-most-one cell-boundary prime described above contributes
+$O(m\log m)$. Let first $m$ tend to infinity
+and then $\varepsilon$ tend to zero. This yields
+\begin{equation}
+ \limsup_{m\to\infty}\frac{\log D_m(a)}{m^2}
+ \le S_\rho+\frac{9\rho^2}{4}\log|a-1|
+                  -\frac18\log|a|.                        \label{eq:15}
+\end{equation}
+Thus, with $q_a=|a|$,
+\begin{equation}
+\begin{aligned}
+ \tau_+(q_a)&=S_++\frac14\log(q_a-1)-\frac18\log q_a,\\
+ \tau_-(q_a)&=S_-+\frac{225}{1024}\log(q_a+1)-\frac18\log q_a.
+\end{aligned}                                               \label{eq:17}
+\end{equation}
+The endpoint divisor contributes $H_*/m^2\to9\rho^2/4$ and
+$N/m^2\to1/8$. This proves the required arithmetic limsup.
+
+\section{Nonvanishing along prime-power towers}\label{sec:nonvanishing}
+
+The ancillary seed files contain two coefficient arrays. Let $H_{211}$ and
+$H_{378}$ be the integer polynomials they determine.
+Appendix~\ref{app:seed-data} prints their degrees and complete residue
+vectors. The arrays themselves are the exact coefficient data used by the
+seed replay. The seed arrays and the interval boxes used later are part of
+the proof record. They accompany the paper as ancillary data. Take the seed
+pair $(n,h)=(12,4)$ or $(16,5)$, and write $b=a-1$ and $H=3h-3$ at the seed.
+We use row normalization, as in the ancillary script. For each seed row
+$i\in\{0,\ldots,n-1\}$, let
+\[
+ s_i=\operatorname{lcd}\{\text{coefficients of }b^H E_{ij}(a):
+                         n\le j<2n\},
+ \qquad
+ N_n(a)=\bigl[s_i b^H E_{ij}(a)\bigr]_{\substack{0\le i<n\\ n\le j<2n}},
+\]
+and put $S_n=\prod_{i=0}^{n-1}s_i$. Thus $N_n(a)$ is an integer polynomial
+matrix and $\det N_n(a)=S_n b^{nH}G_{n,a}(0)$.
+Define
+\[
+\begin{aligned}
+K_{12}&=2^{148}3^{74}5^{20}7^{32}11^{37}13^{38}17^{28}
+        19^{20}23^4,\\
+K_{16}&=2^{154}3^{96}5^{91}7^{32}11^{46}13^{52}17^{51}
+        19^{52}23^{36}29^{12}31^4,
+\end{aligned}
+\]
+and let $K_n$ denote the corresponding constant. Put
+$f_{12}=25$, $f_{16}=42$, $e_{12}=12$, and $e_{16}=24$. Then the preceding
+identity
+\begin{equation}
+ K_n\det N_n(a)=S_n a^{e_n}(a-1)^{nH-f_n}H(a),
+\label{eq:seed-cleared}
+\end{equation}
+is the exact cleared identity checked by the seed script. Thus the
+corresponding determinant quotient has denominator $(a-1)^{f_n}$. The two
+sides of \eqref{eq:seed-cleared} have the same polynomial after clearing the
+row product. Their
+degrees are at most
+$\sum_{j=12}^{23}(j+8)=306$ and
+$\sum_{j=16}^{31}(j+11)=552$, respectively. These are the column degree
+bounds $j+H-1$ summed over the $m=n$ columns. So exact evaluation at
+$307$ and $553$ integer points proves the identities. They read
+\begin{equation}
+ G_{12,a}(0)=\frac{a^{12}H_{211}(a)}
+ {K_{12}(a-1)^{25}},\qquad
+ G_{16,a}(0)=\frac{a^{24}H_{378}(a)}
+ {K_{16}(a-1)^{42}},                                    \label{eq:18}
+\end{equation}
+On the positive branch write $H=H_{211}$. On the negative branch write
+$H=H_{378}$. The residues of $H_{211}$ are nonzero modulo $29$. Those of $H_{378}$ are
+nonzero modulo $37$. The residue vectors are printed in Appendix
+\ref{app:seed-data}; the ancillary seed replay recomputes them from the
+coefficient arrays. Hence
+$H(a)\ne0$ for every integer $a$.
+For a fixed integer $|a|\ge27$, choose a prime divisor $p$ of
+\begin{equation}
+ (2n)!\,|a(a-1)H(a)|+1,                                  \label{eq:19}
+\end{equation}
+where $(n,H)=(12,H_{211})$ on the positive side. On the negative side it
+is $(16,H_{378})$. Then $p>2n$ and $p\nmid a(a-1)H(a)K_n$. Every prime
+factor of $K_{12}$ is below $24$, and every prime factor of $K_{16}$ is
+below $32$. So the seed value in \eqref{eq:18} is a $p$-unit.
+
+Put $Q=p^k$, $(m,g)=(nQ,hQ)$, with $(n,h)=(12,4)$ or $(16,5)$, and work in
+$\mathbb Z_{(p)}$. The coefficientwise tower calculation follows.
+\input{tower-proof.tex}
+
+\section{Positive analytic estimate}\label{sec:positive}
+
+Let $m=12Q$, $g=4Q$, $\rho=1/3$, and $q=|a|>1$, $\lambda=\log q$. Define
+\[
+ h_\rho(t)=t\log t-(t-\rho)\log(t-\rho)-\rho\log\rho,\quad
+ B(z)=\int_0^2\log|z+x|\,\dd x\quad(z\in\mathbb C\setminus[-2,0]).
+\]
+For real $t\ge\rho$, this complex-plane definition is the real function
+$B(t)$ used in the energy below.
+On probability densities $\mu=f(t)\dd t$ with $0\le f\le3$, support in
+$[\rho,\infty)$, and finite first moment, put
+\[
+ L(\mu,\nu)=-\iint\log|t-s|\,\dd\mu(t)\dd\nu(s).
+\]
+\[
+ {\mathcal E}^+_\lambda(\mu)=\frac32+\int(B-3h_\rho+\lambda t)\,\dd\mu
+ +L(\mu,\mu),
+ \quad A_+(\lambda)=\inf_\mu{\mathcal E}^+_\lambda(\mu).
+\]
+
+\begin{proposition}\label{prop:positive}
+For the positive tower,
+\begin{equation}
+ \limsup_{Q\to\infty}(12Q)^{-2}
+ \log|\det M(a)|\le-A_+(\log|a|).                           \label{eq:24}
+\end{equation}
+Moreover $A_+$ is finite and concave, and
+\begin{equation}
+ A_+(\lambda_2)-A_+(\lambda_1)
+ \ge\frac12(\lambda_2-\lambda_1)\quad
+ (\lambda_2\ge\lambda_1).                                  \label{eq:25}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For every center $z$ used below, the circle $|u-z|=1/4$ avoids the
+negative-integer poles. Cauchy's formula gives
+\begin{equation}
+ F_{ij}''(z)=\frac{2!}{2\pi i}
+ \int_{|u-z|=1/4}\frac{F_{ij}(u)}{(u-z)^3}\,\dd u.
+ \label{eq:cauchy-fpp}
+\end{equation}
+Thus the two derivatives can be represented before the determinant summation.
+The representation also makes the triple zero of $w$ and the two derivative
+orders explicit in the occupancy estimate below.
+Expand the finite sums $r\le R$ and apply Andreief's identity
+\cite{Andreief} to the two Cauchy determinants. Then let $R$ tend to
+infinity. Absolute convergence holds because the differentiated rational
+summands have polynomial growth and $q^{-\sum r_\ell}$ is geometric. The
+Cauchy double alternant gives the standard formula
+\cite[Eq.~(2.7)]{Krattenthaler}
+\[
+ H(z_1,\ldots,z_m)=
+ \Delta(I)\Delta(J)\Delta(z)^2
+ \prod_{\ell=1}^m\frac{w(z_\ell)}
+ {\prod_{k=0}^{2m-1}(z_\ell+k)}.
+\]
+Consider a nonzero term. The triple zeros of $w$ and the two derivatives
+give it occupancy at most three at every integer center. Suppose $k$
+variables share a center. Their squared Vandermonde vanishes to order
+$k(k-1)$ on that diagonal. The derivatives have total order $2k$. Since
+$k(k-1)>2k$ for $k\ge4$, every such term vanishes. Use Cauchy circles of
+radius $1/4$ independently in each variable.
+
+Use the midpoint convention $s_r=r+1/2$ and
+$\zeta_r=s_r/m$. Let $\mu_m$ have density equal to the center occupancy on
+$[r/m,(r+1)/m)$. In cells a fixed positive distance from the support endpoint,
+replacing $s_r/m$ by either endpoint changes each displayed Riemann sum by
+$O(1/m)$ per particle. The bounded collection of cells meeting the endpoint
+has $h'_{1/3}(t)=\log(t/(t-1/3))$ and contributes
+$O(\log m/m)$ per particle. The monotone tail estimates handle the remaining
+cells. Summed over all particles, these errors are $O(m\log m)$.
+The fixed Vandermonde, moving Vandermonde, filter, and denominator
+estimates hold uniformly in the admissible center tuples. With this
+convention they are
+\begin{equation}
+\begin{aligned}
+ \log(\Delta(I)\Delta(J))
+   &=m^2\log m-\frac32m^2+O(m\log m),\\
+ \log|\Delta(z)^2|
+   &\le m(m-1)\log m-m^2L(\mu_m,\mu_m)+O(m\log m),\\
+ \sum_\ell\log|w(z_\ell)|
+   &\le3m^2\int h_\rho\,\dd\mu_m+O(m\log m),\\
+ \sum_{\ell,k}\log|z_\ell+k|
+   &\ge2m^2\log m+m^2\int B\,\dd\mu_m-O(m\log m).
+\end{aligned}                                             \label{eq:26}
+\end{equation}
+The filter estimate is the entropy inequality for $\binom{r-1}{g}$. It is
+followed by the increasing Riemann sum for $h_\rho$. For the moving
+Vandermonde, let $c_r\le3$ be the occupancy of cell $r$. Remove, for each
+particle, pairs with distinct particles in cells at distance $|r-s|<3$.
+Occupancy at most three leaves at most fourteen such non-diagonal pairs per
+particle. There are two in its own cell and three in each of the four
+adjacent cells.
+The same-cell integral is $-\log m-3/2$, and the removed pairs contribute
+$O(m\log m)$. For the remaining pairs, if $d=|r-s|\ge3$, two particles in these cells are at distance at most
+$(d+1)/m$. Integrating over the two cells gives the comparison
+\[
+ \log\frac{d+1}{m}\le
+ m^2\!\int_{r/m}^{(r+1)/m}\!\int_{s/m}^{(s+1)/m}
+       \log|x-y|\,\dd x\dd y+O(d^{-1}).
+\] Summing this inequality with
+weights $c_rc_s$ yields the moving-Vandermonde line in \eqref{eq:26}.
+The constants in the $O$ terms can be chosen independently of the tuple of
+centers. For $c_r\le3$ and $\sum_rc_r=m$,
+\[
+ \begin{aligned}
+ &\left(\sum_r c_r(c_r-1)+
+       \sum_r\sum_{0<|s-r|<3}c_rc_s\right)(1+\log(m+1))\\[-2pt]
+ &\hspace{4em}\le 14m(1+\log(m+1)),\\
+ &\sum_r\sum_{|s-r|\ge3}\frac{c_rc_s}{|r-s|}
+       \ll m\log(m+1).
+ \end{aligned}
+\]
+The first bound handles the deleted same-cell and neighboring-cell pairs.
+The second sums the $O(d^{-1})$ comparison error, using at most six particles
+in each fixed positive distance shell. The midpoint, endpoint, and
+Cauchy-circle replacements satisfy the same uniform estimate
+\[
+ |R_{\rm edge}|+|R_{\rm circle}|\le C m\log(m+1)
+\]
+for an absolute $C$ and every admissible center tuple. In particular the
+singular first-cell derivative contributes $O(\log m/m)$ per particle before
+the outer factor $m$. So this bound includes it.
+The denominator line is the increasing Riemann sum for $B$. For $\rho=1/3$
+the changed uniform inequalities are
+\[
+\begin{aligned}
+ \log|w(m\zeta)|&\le3m\int_0^{1/3}\log|\zeta-x|\,\dd x
+ +3m(\rho-\rho\log\rho)+O(\log m),\\
+ \sum_{k=0}^{2m-1}\log|\zeta+k/m|&\ge mB(\zeta)-\log7.
+\end{aligned}
+\]
+The support is $[1/3,\infty)$. For one particle the denominator-circle
+loss is
+\[
+ \sum_{k=0}^{2m-1}-\log\left(1-\frac1{4(r+k)}\right)<2,
+ \qquad r+k\ge m/3.
+\]
+Thus the total circle loss is $<2m$. The denominator line loses $\log7$ per
+particle, and hence $m\log7$ in total. Both losses are $O(1)$ per particle,
+and $O(m)$ in total.
+The fixed and moving Vandermonde bounds use the same near-pair correction
+above. The remaining terms are the Riemann sums of the two displayed
+inequalities over the cells. Their errors are $O(\log m)$ per particle, so
+the total error is $O(m\log m)$. None of these terms alters the quadratic
+rate.
+
+Reserve $\exp(-\sum r_\ell/m)$ from the geometric weight and put
+$\beta=\lambda-1/m$. Equation~\eqref{eq:26}, Cauchy's estimate, and
+cancellation of all $m^2\log m$ terms give each nonzero tuple the bound
+\[
+ \exp\{-m^2{\mathcal E}^+_\beta(\mu_m)+O(m\log m)
+                 -\tfrac1m\sum_\ell r_\ell\}.
+\]
+The unrestricted tail satisfies
+\begin{equation}
+ \frac1{m!}\sum_{r_1,\ldots,r_m\ge1}
+ e^{-\sum r_\ell/m}
+ \le\frac1{m!}(e^{1/m}-1)^{-m}\le e^m.                    \label{eq:27}
+\end{equation}
+Take the supremum over center tuples, sum \eqref{eq:27}, and then let
+$Q\to\infty$. This proves the bound with $A_+(\lambda-1/m)$. The energy is
+finite on a compact reference density. It is bounded below by the
+confining linear term and is affine in $\lambda$. Hence it is concave and
+continuous. Letting $m\to\infty$ gives \eqref{eq:24}.
+
+Finally, we use the bathtub inequality for the density cap $3$. It shows that
+every admissible probability density supported on $[\rho,\infty)$ has
+first moment at least $\rho+1/6=1/2$. Taking the difference of the two
+affine functionals in $\lambda$ proves \eqref{eq:25}. The finite cutoff is
+removed exactly as in \cite[Lemma~6.1]{ZhB}. Here the summand is bounded
+by the geometric factor in \eqref{eq:27}.
+\qedhere
+\end{proof}
+
+\section{Negative signed-contour estimate}\label{sec:negative}
+
+Let $m=16Q$, $g=5Q$, $\rho=5/16$, $q=|a|>1$, and $\lambda=\log q$. Put
+\[
+ H_\rho(z)=\int_0^\rho\log|z-x|\,\dd x-\rho\log\rho+\rho,\quad
+ B(z)=\int_0^2\log|z+x|\,\dd x,
+\]
+\[
+ V_\lambda(z)=B(z)-3H_\rho(z)+\lambda\operatorname{Re} z+\pi|\operatorname{Im} z|.
+\]
+In this section set
+\[
+ L(\mu,\nu)=-\iint\log|z-w|\,\dd\mu(z)\dd\nu(w).
+\]
+Let
+\[
+ \Gamma_m(t)=g+\frac12+4|t|+it,\qquad t\in\mathbb R,
+\]
+oriented by increasing $t$. Let $C$ be its limiting scaled contour
+$z=\rho+4|y|+iy$. For probability measures $\mu$ on $C$ define
+\[
+ {\mathcal E}^-_\lambda(\mu)=\frac32+\int_CV_\lambda\,\dd\mu
+ +L(\mu,\mu),
+ \qquad A_-(\lambda)=\inf_\mu{\mathcal E}^-_\lambda(\mu).
+\]
+
+\begin{proposition}\label{prop:negative}
+For the negative tower,
+\begin{equation}
+ \limsup_{Q\to\infty}(16Q)^{-2}\log|\det M(-q)|
+ \le-A_-(\log q).                                         \label{eq:28}
+\end{equation}
+The infimum is over all probability measures of finite first moment and
+finite logarithmic energy; there is no density-cap assumption. Further,
+\begin{equation}
+ A_-(\lambda_2)-A_-(\lambda_1)
+ \ge\frac5{16}(\lambda_2-\lambda_1)\quad
+ (\lambda_2\ge\lambda_1).                                 \label{eq:29}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Write $c=g+1/2$. Consider
+$F_{ij}(s)=w(s)/((s+i)(s+j))$. Close the contour formed by the two rays
+and the downward vertical segment at $\operatorname{Re} s=R$. Let $R$ tend
+to infinity through half-integers. The boundary is clockwise. The residue of
+$q^{-s}F_{ij}''(s)/\sin(\pi s)$ at a positive integer $r$ is
+$(-1)^rq^{-r}F_{ij}''(r)/\pi$. The residues with $r\le g$ vanish because
+$w$ has a triple zero. The vertical segment is $O(q^{-R}R^C)$ and tends to
+zero. The two rays converge exponentially. Therefore, with orientation,
+the exact signed identity is
+\begin{equation}
+ M_{ij}(-q)=-\frac1{2i}\int_{\Gamma_m}
+       \frac{q^{-s}F_{ij}''(s)}{\sin(\pi s)}\,\dd s.         \label{eq:30}
+\end{equation}
+Set $W_{I,J}=\Delta(I)\Delta(J)$ and
+\[
+ P(s_1,\ldots,s_m)=
+ \frac{\prod_\ell w(s_\ell)\Delta(s)^2}
+ {\prod_{\ell=1}^{m}\prod_{k=0}^{2m-1}(s_\ell+k)}.
+\]
+Finite determinant expansion followed by absolute convergence gives the
+differentiated Andreief identity
+\begin{equation}
+ \det M(-q)=\frac{W_{I,J}}{m!}\left(-\frac1{2i}\right)^m
+ \int_{\Gamma_m^m}\prod_\ell\frac{q^{-s_\ell}}{\sin(\pi s_\ell)}
+ \left(\partial_1^2\cdots\partial_m^2P\right)
+ \prod_\ell\dd s_\ell.                                   \label{eq:31}
+\end{equation}
+The derivatives act on $P$ only.
+
+At $s=\Gamma_m(t)$,
+\begin{equation}
+ |\sin(\pi(c+4|t|+it))|^{-1}\le C_{\sin}e^{-\pi|t|}.             \label{eq:32}
+\end{equation}
+Here $C_{\sin}$ is an absolute constant. The squared modulus is
+$\cos^2(4\pi|t|)+\sinh^2(\pi t)$. On $|t|\le1/16$ the cosine is at least
+$1/\sqrt2$ in absolute value. On $1/16\le|t|\le1$ the hyperbolic sine has a
+fixed positive lower bound. For $|t|\ge1$ it gives the exponential
+bound. Cauchy circles of radius $1/8$ give
+\begin{equation}
+ |\partial_1^2\cdots\partial_m^2P(s)|
+ \le128^m\sup_{|u_\ell-s_\ell|\le1/8}|P(u)|.               \label{eq:33}
+\end{equation}
+We shift only the majorant $q^{-\operatorname{Re}s}e^{-\pi|\operatorname{Im}s|}$
+of the base and sine factors in \eqref{eq:32}. On each such circle,
+replacing the center $s_\ell$ by a supremum point $u_\ell$ changes this
+majorant by at most $\exp((\lambda+\pi)/8)$. The $m$ shifts therefore cost
+$(\lambda+\pi)m/8=O_\lambda(m)$ and are absorbed in the linear error term.
+Use the scaled coordinate $\zeta=s/m$ throughout. Thus the contour centre
+has $\zeta=z(y)+1/(2m)$, and the Cauchy circles give the tube
+\[
+ {\mathcal S}_m=\{z(y)+1/(2m)+e:\ |e|\le1/(8m)\},\quad
+ z(y)=\rho+4|y|+iy.
+\]
+The endpoint and midpoint Riemann sums have total error
+$O(\log m+\log(1+|\zeta|))$ per particle. In particular
+$\operatorname{dist}({\mathcal S}_m,C)\le5/(8m)$. The filter and
+denominator bounds on this tube are
+\begin{equation}
+\begin{aligned}
+ \log|w(m\zeta)|\le3mH_\rho(\zeta)
+ +O\!\left(\log m+\log(1+|\zeta|)\right),\\
+ \sum_{k=0}^{2m-1}\log|\zeta+k/m|
+ \ge mB(\zeta)-O\!\left(\log m+\log(1+|\zeta|)\right).    \label{eq:34}
+\end{aligned}
+\end{equation}
+The filter bound follows from the decreasing Riemann sum. The denominator
+bound follows from the increasing one.
+The normalization in $H_\rho$ uses $\log(g!)\ge g\log g-g$. The fixed
+Vandermonde satisfies
+\[
+ \log W_{I,J}=m(m-1)\log m-\frac32m^2+O(m\log m),
+\]
+and the powers of $m$ cancel against the moving Vandermonde and the $2m$
+denominator factors. The resulting integrand is bounded by
+\begin{multline}
+ \exp\left\{-\frac32m^2-m\sum_\ell V_\lambda(\zeta_\ell)
+ +\sum_{\ell\ne j}\log|\zeta_\ell-\zeta_j|\right.\\
+ \left.{}+C_2\sum_\ell\log(1+|\zeta_\ell|)+O(m\log m)\right\}.  \label{eq:35}
+\end{multline}
+Here $C_2=C_2(\lambda)$ is independent of $m$ and of the configuration. It
+collects the per-particle errors of \eqref{eq:34}; its $\lambda$ dependence
+also absorbs the preceding circle-shift cost.
+
+At a contour center $s=m\zeta$ the base and sine factors satisfy
+\[
+ q^{-\operatorname{Re} s}e^{-\pi|\operatorname{Im} s|}
+ \le \exp\{-m(\lambda\operatorname{Re}\zeta+\pi|\operatorname{Im}\zeta|)\}.
+\]
+For $L\ge0$
+ put $\ell_L(d)=\max(\log d,-L)$, with $\ell_L(0)=-L$. If
+$\mu_m=m^{-1}\sum_\ell\delta_{\zeta_\ell}$, then for every $L$
+\begin{equation}
+ \sum_{\ell\ne j}\log|\zeta_\ell-\zeta_j|
+ \le m^2\iint\ell_L(|z-w|)\,\dd\mu_m(z)\dd\mu_m(w)+mL. \label{eq:35a}
+\end{equation}
+Subtract and add $\varepsilon|\operatorname{Im}\zeta_\ell|$ in \eqref{eq:35}. The bound for the full
+configuration then has three parts. They are the corresponding truncated
+energy plus $mL+O(m\log(m+1))$, the term $C_2\sum_\ell\log(1+|\zeta_\ell|)$, and the
+factor $\exp(-m\varepsilon\sum_\ell|y_\ell|)$. On the tube
+$|\zeta|\le1+5|y|$, so $\log(1+|\zeta|)\le\log2+\frac52|y|$. For
+$m\ge5C_2/\varepsilon$ we get
+$C_2\log(1+|\zeta_\ell|)\le C_2\log2+\frac12m\varepsilon|y_\ell|$. Half of
+the factor absorbs these terms, at the cost $e^{O(m)}$. Since
+$|\dd s|=m\sqrt{17}\,\dd y$ on the two rays, the remaining factor
+$\exp(-\frac12m\varepsilon\sum_\ell|y_\ell|)$ has integral at most
+$(4\sqrt{17}/\varepsilon)^m$. Taking first $m\to\infty$, then $L\to\infty$,
+and finally $\varepsilon\downarrow0$ proves \eqref{eq:28} using
+\eqref{eq:37}--\eqref{eq:38a}.
+
+
+For $0<\varepsilon\le\pi/2$ put
+\[
+ V_{\lambda,\varepsilon}(z)=V_\lambda(z)-\varepsilon|\operatorname{Im} z|,\qquad
+ K_{\varepsilon,L}(z,w)=\frac{V_{\lambda,\varepsilon}(z)+V_{\lambda,\varepsilon}(w)}2
+                         -\ell_L(|z-w|),
+\]
+and let ${\mathcal E}_{\varepsilon,L}$ be $3/2$ plus the $K_{\varepsilon,L}$
+pair integral. Work in the closed region
+\[
+ D=\{z:\rho-1/32\le\operatorname{Re} z\le\rho+4|\operatorname{Im} z|+1\},
+\]
+which contains $C$ and every $\mathcal S_m$ for $m\ge16$. There are
+constants $c>0,C_0$ such that
+\begin{equation}
+ K_{\varepsilon,L}(z,w)\ge c(|z|+|w|)-C_0\qquad(z,w\in D).       \label{eq:36}
+\end{equation}
+These constants are independent of $L$ and $\varepsilon$. The same
+elementary logarithmic bounds used for $C$ apply on the fixed strip
+$\rho-1/32\le\operatorname{Re}z\le\rho$. Their constants are enlarged
+there.
+They give
+$V_{\lambda,\varepsilon}(z)\ge(\pi/2)|\operatorname{Im} z|-3\rho\log(1+|z|)-C_1$.
+Here $C_1$ is independent of $L$ and $\varepsilon$.
+On $D$, $|z|\le\rho+1+5|\operatorname{Im} z|$, and
+$\ell_L(|z-w|)\le\log(1+|z|)+\log(1+|w|)$. This proves \eqref{eq:36}.
+
+Let $a_{\varepsilon,L,m}$ be the infimum of ${\mathcal E}_{\varepsilon,L}$ over
+probability measures on $\mathcal S_m$. Let $a_{\varepsilon,L}$ be the
+corresponding infimum on $C$. Choose a fixed compactly supported reference
+measure on a finite piece of $C$. Push it by the real shift $1/(2m)$.
+Its support is contained in $\mathcal S_m$, so it gives a uniform upper
+bound for near-minimizers of $a_{\varepsilon,L,m}$. Together
+with the coercivity in \eqref{eq:36}, this gives tightness and a uniform
+first-moment bound. From any weakly convergent subsequence, the distance
+bound $\operatorname{dist}({\mathcal S}_m,C)\le5/(8m)$ puts the limit on
+$C$. For fixed $L$, $K_{\varepsilon,L}$ is bounded below and continuous. The
+product measures converge weakly. We truncate the kernel above and then use
+monotone convergence. This proves the lower-semicontinuity inequality
+\begin{equation}
+ \liminf_{m\to\infty}a_{\varepsilon,L,m}\ge a_{\varepsilon,L}.   \label{eq:37}
+\end{equation}
+As $L$ increases, $\ell_L$ decreases and $K_{\varepsilon,L}$ increases to the
+full kernel. Hence $a_{\varepsilon,L}$ is nondecreasing and has a limit no
+larger than the full infimum $A_{-,\varepsilon}(\lambda)$. For the reverse
+inequality, take near-minimizers for $a_{\varepsilon,L}$ and use
+\eqref{eq:36} for tightness. Pass to a weak limit under each fixed
+truncation $K_{\varepsilon,L_0}$, then let $L_0$ increase. This identifies
+the limit of the infima with the full infimum.
+
+It remains to remove the auxiliary $\varepsilon$. Let
+$\varepsilon_j\downarrow0$ and choose $\mu_j$ on $C$ with
+${\mathcal E}_{\varepsilon_j}(\mu_j)\le A_{-,\varepsilon_j}(\lambda)+1/j$.
+The same reference measure and \eqref{eq:36} give tightness and a uniform
+first-moment bound. After passing to a subsequence, $\mu_j\Rightarrow\mu$.
+Fix $L$ and a clipping level $T$, and set
+$K_{j,L}^T=\min(K_{\varepsilon_j,L},T)$. Choose a continuous cutoff
+$\chi_R$ on $D$. For $R>0$ define the compact exhaustion
+$D_R=D\cap\{|z|\le R\}$. Choose $\chi_R$ equal to $1$ on $D_R$ and
+supported in $D_{R+1}$, with $0\le\chi_R\le1$. On the compact support of
+$\chi_R(z)\chi_R(w)$, the kernels $K_{j,L}^T$ converge uniformly to
+$K_{0,L}^T$. The coercive lower bound \eqref{eq:36} controls the complement,
+and tightness makes its contribution at least $-2\eta(T+C_0)$ for $R$ large.
+Weak convergence applied to the continuous cutoff therefore gives
+\[
+ \liminf_{j\to\infty}\iint K_{\varepsilon_j,L}\,\dd\mu_j\dd\mu_j
+ \ge \iint K_{0,L}^T\,\dd\mu\dd\mu-2\eta(T+C_0).
+\]
+First let $j\to\infty$, then $R\to\infty$ and $\eta\downarrow0$, and
+finally $T\to\infty$. This yields the varying-kernel lower bound at fixed
+$L$. Letting $L\to\infty$ gives
+\begin{equation}
+ \lim_{\varepsilon\downarrow0}A_{-,\varepsilon}(\lambda)=A_-(\lambda). \label{eq:38a}
+\end{equation}
+We turn to the zero-mass energy inequality used in endpoint certificates.
+Let $\mu$ and $\sigma$ be probability measures of equal mass, with $\sigma$
+compactly supported. Assume that $\mu$ has finite first moment and finite
+logarithmic self-energy. Assume also that the cross-pairing with $\sigma$ is
+finite.
+Put $\nu=\mu-\sigma$. Restrict both
+measures to a disk of radius $R$ and normalize. This gives probability
+measures $\mu_R$ and ${\sigma}_R$. Put $\nu_R=\mu_R-{\sigma}_R$. For all
+large $R$, ${\sigma}_R=\sigma$, so $\nu_R$ is compactly supported and has
+zero mass.
+The compact zero-mass energy inequality
+\begin{equation}
+ L(\nu_R,\nu_R)\ge0                                      \label{eq:38}
+\end{equation}
+is the direct compact case of \cite[Lemma~I.1.8]{SaffTotik}. We use only
+this inequality; no Fourier limiting identity is needed.
+The positive part of $\log|z-w|$ is bounded by
+$\log(1+|z|)+\log(1+|w|)$. The negative part is controlled by the finite
+self-energy. Also $U^\sigma(z)=O(\log(1+|z|))$. Consequently
+$L(\mu_R,\mu_R)\to L(\mu,\mu)$ and
+$L(\mu_R,\sigma)\to L(\mu,\sigma)$, so
+$L(\nu_R,\nu_R)\to L(\nu,\nu)$. We pass only this pairing limit in
+\eqref{eq:38}:
+\begin{equation}
+ L(\mu-\sigma,\mu-\sigma)\ge0.                         \label{eq:38b}
+\end{equation}
+The bounded compact densities of both endpoint certificates satisfy these
+hypotheses.
+
+Since $\operatorname{Re} z\ge\rho=5/16$ on $C$, subtracting the two affine
+functionals in $\lambda$ gives \eqref{eq:29}.
+\qedhere
+\end{proof}
+
+\section{Endpoint certificates and ray comparison}\label{sec:endpoints}
+
+We first state the certificate inequalities and then record their
+numerical values. Consider the positive problem first. Let
+$\sigma=f_\sigma(t)\dd t$ be the piecewise-constant density given by the
+$256$-cell table in
+Appendix~\ref{app:positive-data}. Put
+\[
+\begin{aligned}
+ U^\sigma(t)&=\int\log|t-s|\,\dd\sigma(s),\\
+ V_+(t)&=B(t)-3h_{1/3}(t)+\lambda t,\\
+ \Psi_+(t)&=V_+(t)-2U^\sigma(t).
+\end{aligned}
+\]
+For every real $\Lambda$,
+\begin{equation}
+ A_+(\lambda)\ge \frac32-L(\sigma,\sigma)+\Lambda
+       -3\int_{1/3}^{\infty}(\Lambda-\Psi_+(t))_+\,\dd t.
+                                                               \label{eq:41}
+\end{equation}
+Take an admissible density $f\le3$. The pointwise inequality
+$(\Psi_+-\Lambda)f\ge-3(\Lambda-\Psi_+)_+$ and
+$L(f\dd t-\sigma,f\dd t-\sigma)\ge0$ give \eqref{eq:41}.
+Explicitly,
+\[
+L(\mu,\mu)=L(\mu-\sigma,\mu-\sigma)-2\int U^\sigma\,\dd\mu-L(\sigma,\sigma),
+\]
+which fixes the sign in \eqref{eq:41}. The zero-mass inequality is the
+one-dimensional logarithmic-energy inequality; it is the real-line special
+case of \eqref{eq:38b}. On each printed cell, the convex
+terms of $\Psi_+$ are bounded by their midpoint tangent. The concave terms
+are bounded by their endpoint chord. The tail is bounded by
+\[
+ \Psi_+(t)\ge B(t)-3h_{1/3}(t)+\lambda t-2\log(t-1/3),
+\]
+whose derivative is at least $\lambda-(3\rho+2)/(t-\rho)$. The interval
+check verifies that this bound is increasing beyond the last cell.
+
+Consider the negative problem. Let $\sigma$ be the positive rational
+probability measure on the two rays in Appendix~\ref{app:negative-data}. The compact
+certificate uses the
+interval boxes in the ancillary files. On the whole contour it verifies
+\begin{equation}
+\Psi_-(z):=V_\lambda(z)-2U^\sigma(z)\ge\Lambda_-
+ \quad(z\in C),                                          \label{eq:42}
+\end{equation}
+The contour, $V_\lambda$, and the certificate measure are invariant under
+complex conjugation. Thus the interval replay on the displayed $+$ ray gives
+the same bound on the $-$ ray. The replay also evaluates
+$L(\sigma,\sigma)$ with the exact pair kernel, including the displayed
+minus sign. This
+evaluation includes the finite part at the cusp. Since every competitor
+has mass one, \eqref{eq:42} and
+$L(\mu-\sigma,\mu-\sigma)\ge0$ give
+\begin{equation}
+ A_-(\lambda)\ge\frac32-L(\sigma,\sigma)+\Lambda_- .     \label{eq:43}
+\end{equation}
+For the two endpoint values, the replay computes $\Lambda_-$ as the minimum
+of $V_\lambda-2U^\sigma$ over the directed interval boxes and rounds that
+minimum downward:
+\begin{equation}
+ \Lambda_-^{(27)}=5.0771336769,\qquad
+ \Lambda_-^{(28)}=5.1031720708.                            \label{eq:lambda-minus}
+\end{equation}
+The interval check subdivides compact ray pieces. It bounds the infinite
+tail by the monotone derivative of $V_\lambda-2U^\sigma$. It rounds the
+resulting lower bounds downward. Thus these are directed certificates.
+They do not rest on any numerical optimization.
+
+The positive endpoint levels used in the two positive checks are
+\[
+ \Lambda_{27}=\frac{1364590351}{268435456},\qquad
+ \Lambda_{28}=\frac{687124203}{134217728}.
+\]
+Each printed positive cell is subdivided into $32$ equal subcells. Write the
+subcells as $[t_i^-,t_i^+]$ and put $h_i=t_i^+-t_i^-$. Let $f_i$ be the
+constant density on that subcell, and let $\mu_i=f_i h_i$ be its mass. With
+$\Phi(x)=x^2(\log|x|/2-3/4)$, using the real logarithm and the continuous
+value $\Phi(0)=0$, the exact pair term is
+\[
+ L(\sigma,\sigma)=-\sum_{i\ge j}\frac{\mu_i\mu_j}{h_i h_j}
+ (2-\mathbf1_{i=j})
+ [\Phi(t_i^+-t_j^-)-\Phi(t_i^--t_j^-)-\Phi(t_i^+-t_j^+)+\Phi(t_i^--t_j^+)].
+\]
+After the last cell the check uses the increasing tail
+$V_+(t)-2\log(t-1/3)$.
+
+For the negative table, the branch directions are
+$A=(4+i)/\sqrt{17}$ and $\overline A=(4-i)/\sqrt{17}$. A cell count satisfies
+$c_j\ge0$ and $\sum_jc_j=d$ for each printed column. It has mass
+$c_j/(2d)$ on each branch and density
+$c_j/(2d\,\Delta u_j)$. Here $d$ is the printed denominator and
+$\Delta u_j$ is the cell width. For the cross-ray primitive set
+$\beta=-\overline A=(-4+i)/\sqrt{17}$, so
+$Au+\beta v=z_+(u)-z_-(v)$. Use the principal analytic branch
+$\operatorname{Log} z$
+on $\mathbb C\setminus(-\infty,0]$ and define
+$\Xi(z)=z^2(\operatorname{Log} z/2-3/4)$ there, with $\Xi(0)=0$ by continuity. Take a cell
+$[t^-,t^+]$ on the first
+branch and a cell $[s^-,s^+]$ on the second. The opposite branch uses
+the signed contribution
+\[
+-\operatorname{Re}\!\left(\frac{\Xi(At^++\beta s^+)-\Xi(At^-+\beta s^+)
+ -\Xi(At^++\beta s^-)+\Xi(At^-+\beta s^-)}{A\beta}\right),
+\]
+with these density factors. The interval lower bounds are
+$4.97200113\ldots$ and $4.99000040\ldots$ before downward rounding. The
+largest support endpoint is $u_{\max}=238521/262144$. To justify the tail
+bound, write $A=(4+i)/\sqrt{17}$ and $z_+(u)=\rho+Au$. For $t_0\ge0$,
+\[
+ \operatorname{Re}\frac{A}{t_0+Au}
+ =\frac{u+4t_0/\sqrt{17}}
+        {u^2+8t_0 u/\sqrt{17}+t_0^2},
+ \qquad 0\le\operatorname{Re}\frac{A}{t_0+Au}\le\frac1u.
+\]
+The same formula holds on the conjugate ray. The logarithmic terms of the function $B(z)$ have
+$t_0=\rho+x\ge0$. Those of $H_\rho(z)$ have $t_0=\rho-x\ge0$. On the tail $u\ge3$, beyond the last cell edge, the
+formula gives
+\[
+ \frac{\dd}{\dd u}\bigl(B(z_+(u))-3H_\rho(z_+(u))\bigr)
+ \ge-\frac{3\rho}{u}\ge-\rho.
+\]
+Take a support point $z_\pm(v)$ with $0\le v\le u_{\max}$. Translate the
+origin along the ray. The same identity then gives
+\[
+ \left|\frac{\dd}{\dd u}\log|z_+(u)-z_\pm(v)|\right|
+ \le\frac1{u-u_{\max}}\qquad(u>u_{\max}).
+\]
+The certificate measure is positive with total mass one, so the contribution of
+$-2U^\sigma$ is at least $-2/(u-u_{\max})$. Therefore, on either ray,
+the tail derivative is bounded by
+\[
+ \frac{4\lambda+\pi}{\sqrt{17}}-\rho-\frac{2}{u-u_{\max}}>0.
+\]
+
+The exact rational and directed interval checks use the tables in
+Appendices~\ref{app:positive-data} and~\ref{app:negative-data}.
+They give the downward-rounded energy values
+\begin{equation}
+\begin{array}{c|cc}
+ &q=27&q=28\\ \hline
+ A_+(\log q)&\ge4.9972574688&\ge5.0224702721\\
+ A_-(\log q)&\ge4.9720000000&\ge4.9900000000
+\end{array}                                                \label{eq:44}
+\end{equation}
+and the arithmetic costs \eqref{eq:17}. The costs use rational
+enclosures of the logarithms. Each margin below
+is energy minus arithmetic cost. The resulting strict margins are
+\begin{equation}
+\begin{array}{c|cc}
+ &q=27&q=28\\ \hline
+ \text{positive}&0.0126192827393433594&0.0329429595649909584\\
+ \text{negative}&0.0126929857831087892&0.0275284462287496169 .
+\end{array}                                                \label{eq:margins}
+\end{equation}
+For $q\ge27$,
+\[
+ \frac{\dd\tau_+}{\dd\log q}
+ =\frac{q}{4(q-1)}-\frac18\le\frac7{52}<\frac{27}{200}.
+\]
+Together with \eqref{eq:25}, the positive margin increases with slope at
+least $73/200$. On the negative side,
+\[
+ \frac{\dd\tau_-}{\dd\log q}
+ =\frac{225}{1024}\frac q{q+1}-\frac18\le\frac{97}{1024};
+\]
+\eqref{eq:29} therefore gives net slope at least $223/1024$. The four margins in
+\eqref{eq:margins} persist along the complete ranges $q\ge27$.
+
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:proof}
+
+Fix $a\ge27$ or $a\le-27$ and write $\theta=\operatorname{Li}_3(1/a)$. Use
+the corresponding seed and choose $p$ from \eqref{eq:19}. Take $m=12p^k$
+on the positive side or $m=16p^k$ on the negative side. By
+Lemma~\ref{lem:decomposition}, the determinant identity has the
+form required by Fact~\ref{fact:criterion}. Define
+\[
+ \alpha(a)=A_+(\log|a|),\quad \tau(a)=\tau_+(|a|)\quad(a\ge27),
+\]
+and
+\[
+ \alpha(a)=A_-(\log|a|),\quad \tau(a)=\tau_-(|a|)\quad(a\le-27).
+\]
+Combine the coefficient integrality \eqref{eq:10}, the tower congruence
+\eqref{eq:23}, the arithmetic limsup \eqref{eq:15} and its branch rates
+\eqref{eq:17}. Add Propositions~\ref{prop:positive} and
+\ref{prop:negative}, through their limsup statements \eqref{eq:24} and
+\eqref{eq:28}. Together they give
+\[
+ \limsup_{k\to\infty}m^{-2}\log
+ \left|v^mD_m(a)G_{m,a}(u/v)\right|
+ \le -\alpha(a)+\tau(a)<0
+\]
+The endpoint bounds \eqref{eq:44} and the slope estimates immediately
+following \eqref{eq:margins} give $\alpha(a)>\tau(a)$ throughout the two
+ranges. The analytic limsups above hold for every $m=12Q$ and $m=16Q$,
+respectively, hence also along $m=12p^k$ and $m=16p^k$. If
+$\theta=u/v$ in lowest terms, the integer
+$Z_m=v^mD_m(a)G_{m,a}(u/v)$ is nonzero by the tower congruence
+\eqref{eq:23}. It is integral by \eqref{eq:10}. The factor $v^m$ is
+only $\exp(O(m))$. Hence a tail of these nonzero integers has absolute
+value strictly between zero and one. This is impossible, and the theorem
+follows.
+
+
