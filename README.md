@@ -1,4 +1,8 @@
-# Trilogarithm at reciprocal integers of absolute value at least 27
+# Irrationality of the trilogarithm at reciprocals of integers of absolute value at least 27
+
+Ruiyi Zhang
+
+DOI: [10.5281/zenodo.23395794](https://doi.org/10.5281/zenodo.23395794)
 
 This directory contains an unconditional proof that
 \(\operatorname{Li}_3(1/a)\) is irrational for every integer \(a\ge 27\)
@@ -29,3 +33,19 @@ The tau replay checks the four endpoint inequalities and ray-slope
 thresholds. The contour replay is a finite consistency diagnostic; the
 uniform analytic estimate is proved in the manuscript. `results.txt` records
 the source hashes and the observed outputs.
+
+## Citation
+
+Ruiyi Zhang, *Irrationality of the trilogarithm at reciprocals of integers of absolute value at least 27*, preprint, Zenodo, 2026. https://doi.org/10.5281/zenodo.23395794
+
+```bibtex
+@misc{zhang2026li3atleast27,
+  author    = {Zhang, Ruiyi},
+  title     = {Irrationality of the trilogarithm at reciprocals of integers of absolute value at least 27},
+  year      = {2026},
+  publisher = {Zenodo},
+  note      = {Preprint},
+  doi       = {10.5281/zenodo.23395794},
+  url       = {https://doi.org/10.5281/zenodo.23395794}
+}
+```
